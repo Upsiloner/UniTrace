@@ -1,0 +1,12 @@
+.bg {
+    background: linear-gradient(45deg, #ffcccc, #cc99ff, #99ccff, #ccffcc);
+    filter: blur(5px);
+    background-size: cover;
+    background-attachment: fixed;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1; 
+}
