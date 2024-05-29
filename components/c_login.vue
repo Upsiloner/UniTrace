@@ -18,6 +18,7 @@
             color="purple"
             placeholder="Username..."
         />
+        <div class="prompt">{{ name_msg }}</div>
         
         <div class="title">Password:</div>
         <UInput 
@@ -29,6 +30,8 @@
             variant="outline" 
             placeholder="Password..." 
         />
+        <div class="prompt">{{ pswd_mag }}</div>
+
         <div id="checkandlink">
             <UCheckbox class="mt-1" v-model="selected" color="purple" name="Rememberme" label="Remember Me" />
             
@@ -36,7 +39,7 @@
                 Forget Password?
             </NuxtLink>
         </div>
-        <button id="btn">LOGIN</button>
+        <button id="btn" @click="haha">LOGIN</button>
         <div id="toregister">
             No Account? 
             <NuxtLink id="link" to="signup">
@@ -47,11 +50,14 @@
 </div>
 </template>
 
-<script>
+<script setup>
 import { ref } from 'vue';
 const username = ref('');
 const password = ref('');
 const selected = ref(false);
+
+const name_msg = ref('');
+const pswd_mag = ref('');
 
 const login = () => {
     // console.log('用户名:', this.username);
@@ -102,7 +108,7 @@ const login = () => {
     text-shadow: 2px 2px 5px #c3b6e5; 
     text-align: center;
     margin-top: 10px;
-    margin-bottom: 60px;
+    margin-bottom: 54px;
 }
 
 #link {
@@ -134,12 +140,18 @@ const login = () => {
     font-weight: bold; 
     color: #000000; 
     font-family: sans-serif;
-    margin: 10px 36px;
+    margin: 8px 36px;
 }
 
 .box {
     width: 320px;
-    margin: 10px 36px 20px 36px;
+    margin: 10px 36px 1px 36px;
+}
+
+.prompt {
+    color: red;
+    margin-left: 36px;
+    height: 28px;
 }
   
 </style>

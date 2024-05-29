@@ -1,7 +1,8 @@
 <template>
-    <!-- background container -->
+    <!-- background -->
     <div class="bg"></div>
-    forget password
+
+    <c_forget />
 </template>
 
 <script setup>

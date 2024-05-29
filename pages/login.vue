@@ -1,5 +1,5 @@
 <template>
-    <!-- background container -->
+    <!-- background -->
     <div class="bg"></div>
 
     <c_login />
