@@ -2,7 +2,7 @@
     <!-- background container -->
     <div class="bg"></div>
 
-    <login />
+    <c_login />
 </template>
 
 <script setup>

@@ -1,8 +1,11 @@
 <template>
     <!-- background container -->
     <div class="bg"></div>
-    forget password
+    <c_signup />
 </template>
 
 <script setup>
 </script>
+
+<style>
+</style>

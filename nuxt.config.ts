@@ -7,5 +7,4 @@ export default defineNuxtConfig({
     '~/assets/css/bg.css'
   ],
   // ssr: false
-  
 })

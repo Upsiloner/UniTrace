@@ -5,7 +5,7 @@
 <script setup>
     import { useRouter } from 'vue-router';
     const router = useRouter();
-    router.push("logandsign");
+    router.push("login");
 </script>
 
 <style>

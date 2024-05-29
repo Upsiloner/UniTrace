@@ -1,32 +1,38 @@
 <template>
-<div class="login-container">
-    <!-- image -->
-    <div class="image-container">
-        <!-- <image src="/login.jpg" alt="Background Image" layout="fill" object-fit="cover" /> -->
-        <NuxtImg src="/login.jpg"/>
-    </div>
-
-    <!-- data -->
-    <div class="form-container">
-        <h2 id="welcome">Welcome to UniTrace</h2>
-        
-        <div class="title">Email:</div>
-        <UInput class="box" size="xl" color="purple" variant="outline" placeholder="Email..." />
-        
-        <div class="title">Password:</div>
-        <UInput class="box" size="xl" type="password" color="purple" variant="outline" placeholder="Password..." />
-        <div id="checkandlink">
-            <UCheckbox v-model="selected" color="purple" name="Remember Me" label="Rememberme" />
-            
-            <NuxtLink id="link" to="forget">
-                Forget Password?
-            </NuxtLink>
+    <div class="login-container">
+        <!-- image -->
+        <div class="image-container">
+            <!-- <image src="/login.jpg" alt="Background Image" layout="fill" object-fit="cover" /> -->
+            <NuxtImg src="/signup.jpg"/>
         </div>
-        <button id="btn">LOGIN</button>
+    
+        <!-- data -->
+        <div class="form-container">
+            <h2 id="welcome">Sign Up for Your Account</h2>
+            
+            <!-- <div class="title">Email:</div>
+            <UInput class="box" size="xl" color="purple" variant="outline" placeholder="Email..." />
+            
+            <div class="title">Password:</div>
+            <UInput class="box" size="xl" type="password" color="purple" variant="outline" placeholder="Password..." />
+            <div id="checkandlink">
+                <UCheckbox class="mt-1" v-model="selected" color="purple" name="Rememberme" label="Remember Me" />
+                
+                <NuxtLink id="link" to="forget">
+                    Forget Password?
+                </NuxtLink>
+            </div>
+            <button id="btn">LOGIN</button>
+            <div id="toregister">
+                No Account? 
+                <NuxtLink id="link" to="signup">
+                    Click to Rigister
+                </NuxtLink>
+            </div> -->
+        </div>
     </div>
-</div>
 </template>
-
+    
 <script>
 import { ref } from 'vue';
 const username = ref('');
@@ -49,13 +55,18 @@ const login = () => {
     box-shadow: 0 0 10px #bdb0dd33;
 }
 
-#checkandlink {
+/* #checkandlink {
     display: flex; 
     justify-content: space-between; 
     align-items: center; 
     width: 320px; 
     margin: 10px 36px;
 }
+
+#toregister {
+    margin: 18px 76px;
+    align-items: center; 
+} */
 
 .image-container {
     width: 400px;
@@ -70,7 +81,7 @@ const login = () => {
 }
 
 #welcome {
-    font-size: 36px; 
+    font-size: 30px; 
     font-weight: bold; 
     color: #000000; 
     font-family: sans-serif;
@@ -80,9 +91,10 @@ const login = () => {
     margin-bottom: 60px;
 }
 
-#link {
+/* #link {
     color: gray;
 }
+
 
 #link:hover {
     color: #754adb;
@@ -114,6 +126,7 @@ const login = () => {
 .box {
     width: 320px;
     margin: 10px 36px 20px 36px;
-}
-  
+} */
+    
 </style>
+    
