@@ -34,12 +34,14 @@
             <div class="flex">
                 <UInput
                     class="verify"
-                    icon="i-heroicons-check-circle"
+                    icon="i-heroicons-key"
                     size="xl"
                     color="purple"
                     placeholder="Verification Code..."
                 />
-                <button class="btn1">SEND</button>
+                <button class="btn1">
+                    SEND<UIcon name="i-heroicons-paper-airplane" />
+                </button>
             </div>
             <div class="prompt">{{ code_msg }}</div>
 
@@ -140,11 +142,14 @@ const login = () => {
     color: rgb(0, 0, 0); 
     border: 2px solid rgba(121, 121, 121, 0.242); 
     border-radius: 5px; 
-    padding: 8px 24px; 
+    padding: 8px 14px; 
     cursor: pointer; 
     width: 100px;
     height: 46px;
     margin-top: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .btn1:hover {

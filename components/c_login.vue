@@ -3,7 +3,7 @@
     <!-- image -->
     <div class="image-container">
         <!-- <image src="/login.jpg" alt="Background Image" layout="fill" object-fit="cover" /> -->
-        <NuxtImg src="/login.jpg"/>
+        <NuxtImg id="loginimg" src="/login.jpg"/>
     </div>
 
     <!-- data -->
@@ -87,6 +87,12 @@ const login = () => {
     margin: 18px 76px;
     align-items: center; 
 }
+
+#loginimg {
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover;
+  }
 
 .image-container {
     width: 400px;
