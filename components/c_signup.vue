@@ -3,49 +3,49 @@
         <!-- image -->
         <div class="image-container">
             <!-- <image src="/login.jpg" alt="Background Image" layout="fill" object-fit="cover" /> -->
-            <NuxtImg id="signimg" src="/signup.jpg" />
+            <NuxtImg id="signimg" src="/launch_page/signup.jpg" />
         </div>
     
         <!-- data -->
         <div class="form-container">
-            <h2 id="welcome">Sign Up for Your Account</h2>
+            <h2 id="welcome">注册你的账户</h2>
             
-            <div class="title">Username:</div>
+            <div class="title">用户名:</div>
             <UInput
                 class="box"
                 icon="i-heroicons-user"
                 size="xl"
                 color="purple"
-                placeholder="Username..."
+                placeholder="输入用户名..."
             />
             <div class="prompt">{{ name_msg }}</div>
             
-            <div class="title">Email:</div>
+            <div class="title">邮箱:</div>
             <UInput
                 class="box"
                 icon="i-heroicons-envelope"
                 size="xl"
                 color="purple"
-                placeholder="Email..."
+                placeholder="输入邮箱..."
             />
             <div class="prompt">{{ email_msg }}</div>
 
-            <div class="title">Verification:</div>
+            <div class="title">验证码:</div>
             <div class="flex">
                 <UInput
                     class="verify"
                     icon="i-heroicons-key"
                     size="xl"
                     color="purple"
-                    placeholder="Verification Code..."
+                    placeholder="输入验证码..."
                 />
                 <button class="btn1">
-                    SEND<UIcon name="i-heroicons-paper-airplane" />
+                    发送<UIcon name="i-heroicons-paper-airplane" />
                 </button>
             </div>
             <div class="prompt">{{ code_msg }}</div>
 
-            <div class="title">Password:</div>
+            <div class="title">密码:</div>
             <UInput 
                 class="box" 
                 size="xl" 
@@ -53,7 +53,7 @@
                 type="password" 
                 color="purple" 
                 variant="outline" 
-                placeholder="Set Password..." 
+                placeholder="设置密码..." 
             />
             <div class="prompt">{{ pswd1_msg }}</div>
             <UInput 
@@ -63,16 +63,16 @@
                 type="password" 
                 color="purple" 
                 variant="outline" 
-                placeholder="Recognize..." 
+                placeholder="重复密码..." 
             />
             <div class="prompt">{{ pswd2_msg }}</div>
             <div id="buttom">
                 <NuxtLink id="link" to="login">
                 <UIcon name="i-heroicons-arrow-uturn-left" />
-                Go Back
+                返回
                 </NuxtLink>
-                <button class="btn2">RESET</button>
-                <button class="btn3">SIGNUP</button>
+                <button class="btn2">重置</button>
+                <button class="btn3">注册</button>
             </div>
 
         </div>
@@ -144,7 +144,7 @@ const login = () => {
     border-radius: 5px; 
     padding: 8px 14px; 
     cursor: pointer; 
-    width: 100px;
+    width: 100px;   
     height: 46px;
     margin-top: 2px;
     display: flex;
@@ -153,9 +153,8 @@ const login = () => {
 }
 
 .btn1:hover {
-    background-color: rgb(235, 235, 235); 
-    border: 2px solid #c3b6e5; 
-    color: rgb(118, 46, 109); 
+    border: 2px solid #A855F7; 
+    color: rgb(121, 57, 185);
 }
 
 .btn2 {
@@ -166,13 +165,12 @@ const login = () => {
     padding: 8px 20px; 
     cursor: pointer; 
     width: 94px;
-    margin-left: 28px;
+    margin-left: 58px;
 }
 
 .btn2:hover {
-    background-color: rgb(235, 235, 235); 
-    border: 2px solid #c3b6e5; 
-    color: rgb(118, 46, 109); 
+    border: 2px solid #A855F7; 
+    color: rgb(121, 57, 185); 
 } 
 
 .btn3 {

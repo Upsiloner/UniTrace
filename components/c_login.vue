@@ -3,24 +3,24 @@
     <!-- image -->
     <div class="image-container">
         <!-- <image src="/login.jpg" alt="Background Image" layout="fill" object-fit="cover" /> -->
-        <NuxtImg id="loginimg" src="/login.jpg"/>
+        <NuxtImg id="loginimg" src="/launch_page/login.jpg"/>
     </div>
 
     <!-- data -->
     <div class="form-container">
-        <h2 id="welcome">Welcome to UniTrace</h2>
+        <h2 id="welcome">欢迎来到宇迹</h2>
         
-        <div class="title">Username:</div>
+        <div class="title">用户名:</div>
         <UInput
             class="box"
             icon="i-heroicons-user"
             size="xl"
             color="purple"
-            placeholder="Username..."
+            placeholder="输入用户名..."
         />
         <div class="prompt">{{ name_msg }}</div>
         
-        <div class="title">Password:</div>
+        <div class="title">密码:</div>
         <UInput 
             class="box" 
             size="xl" 
@@ -28,22 +28,22 @@
             type="password" 
             color="purple" 
             variant="outline" 
-            placeholder="Password..." 
+            placeholder="输入密码..." 
         />
         <div class="prompt">{{ pswd_mag }}</div>
 
         <div id="checkandlink">
-            <UCheckbox class="mt-1" v-model="selected" color="purple" name="Rememberme" label="Remember Me" />
+            <UCheckbox class="mt-1" v-model="selected" color="purple" name="Rememberme" label="记住密码" />
             
             <NuxtLink id="link" to="forget">
-                Forget Password?
+                忘记密码？
             </NuxtLink>
         </div>
-        <button id="btn" @click="haha">LOGIN</button>
+        <button id="btn" @click="login">登录</button>
         <div id="toregister">
-            No Account? 
+            没有账户？
             <NuxtLink id="link" to="signup">
-                Click to Rigister
+                点此注册
             </NuxtLink>
         </div>
     </div>
@@ -52,6 +52,9 @@
 
 <script setup>
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+const router = useRouter();
+
 const username = ref('');
 const password = ref('');
 const selected = ref(false);
@@ -62,6 +65,7 @@ const pswd_mag = ref('');
 const login = () => {
     // console.log('用户名:', this.username);
     // console.log('密码:', this.password);
+    router.push("main");
 }
 </script>
 
@@ -84,7 +88,7 @@ const login = () => {
 }
 
 #toregister {
-    margin: 18px 76px;
+    margin: 18px 116px;
     align-items: center; 
 }
 
