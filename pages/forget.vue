@@ -2,7 +2,9 @@
     <!-- background -->
     <div class="bg"></div>
 
-    <c_forget />
+    <div class="center">
+        <c_forget />
+    </div>
 </template>
 
 <script setup>

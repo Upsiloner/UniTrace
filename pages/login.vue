@@ -1,8 +1,10 @@
 <template>
     <!-- background -->
     <div class="bg"></div>
-
-    <c_login />
+    
+    <div class="center">
+        <c_login />
+    </div>
 </template>
 
 <script setup>

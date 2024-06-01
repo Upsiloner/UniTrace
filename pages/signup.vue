@@ -2,7 +2,9 @@
     <!-- background -->
     <div class="bg"></div>
     
-    <c_signup />
+    <div class="center">
+        <c_signup />
+    </div>
 </template>
 
 <script setup>

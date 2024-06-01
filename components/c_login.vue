@@ -163,5 +163,4 @@ const login = () => {
     margin-left: 36px;
     height: 28px;
 }
-  
 </style>
