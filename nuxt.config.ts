@@ -4,13 +4,17 @@ export default defineNuxtConfig({
   modules: ["@nuxt/ui", '@nuxtjs/tailwindcss', "@nuxt/image"],
   css: [
     '~/assets/css/center.css',
-    '~/assets/css/bg.css'
+    '~/assets/css/bg.css',
+    '~/assets/css/font.css',
+  
   ],
   app: {
     head: {
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
-    }
-  }
-  // ssr: false
+      link: [
+        { rel: "icon", type: "image/png", href: "logo.png" }
+      ]
+    },
+  },
 })

@@ -1,14 +1,16 @@
 <!-- layouts/default.vue -->
 <template>
-    <!-- top bar -->
-    <topbar />
-    <div class="nav">
-        <!-- navigation bar -->
-        <navbar />
-        <!-- main page area (on the right of the page) -->
-        <main class="content">
-            <slot />
-        </main>
+    <div class="main-page">
+        <!-- top bar -->
+        <topbar />
+        <div class="nav">
+            <!-- navigation bar -->
+            <navbar />
+            <!-- main page area (on the right of the page) -->
+            <main class="content">
+                <slot />
+            </main>
+        </div>
     </div>
         
 </template>
@@ -17,18 +19,21 @@
 </script>
 
 <style scoped>
+.main-page {
+    overflow-y: hidden;
+}
+
 .nav {
     display: flex;
     height: 100vh;
+    padding-top: 88px;
 }
 
 .content {
+    margin-left: 252px;
     flex-grow: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     padding: 1rem;
-    height: 100%;
+    overflow-y: auto;
 }
 </style>
   

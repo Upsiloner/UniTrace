@@ -13,6 +13,14 @@
             <div class="nav-icon"><UIcon name="i-heroicons-bell" /></div>
             通知
         </router-link>
+        <router-link to="/main/music" active-class="active">
+            <div class="nav-icon"><UIcon name="i-heroicons-musical-note" /></div>
+            音乐
+        </router-link>
+        <router-link to="/main/game" active-class="active">
+            <div class="nav-icon"><UIcon name="i-heroicons-cube" /></div>
+            娱乐
+        </router-link>
     </nav>
 </template>
 
@@ -29,7 +37,8 @@
     padding: 1rem;
     margin-left: 10px;
     height: 100vh;
-    border-right: #DDDFE2 dashed 2px
+    border-right: #DDDFE2 dashed 2px;
+    position: fixed;
 }
 
 .nav-bar a {
@@ -45,11 +54,16 @@
 }
 
 .nav-bar a:hover {
-    background-color: #DDDFE2;
+    background-color: #ECECEC;
+}
+
+.nav-bar a:hover > div{
+    transform: translateY(-5px);
+    transition: transform 0.3s ease;
 }
 
 .nav-bar a.active {
-    background-color: #DDDFE2;
+    background-color: #ECECEC;
 }
 
 .nav-icon {
