@@ -24,7 +24,7 @@
                         </router-link>
                         <router-link to="#">
                             隐私政策
-                            <div class="more-icon"><UIcon name="i-heroicons-arrow-up-tray-20-solid" /></div>
+                            <div class="more-icon"><UIcon name="i-heroicons-eye-slash" /></div>
                         </router-link>
                         <router-link to="#">
                             社区规范
@@ -86,10 +86,11 @@ const hideOptions = () => {
     margin-left: 36px;
 }
 #brand {
-    font-size: 42px;
+    font-size: 36px;
     color: black;
     font-family: "deyihei";
-    margin: 24px 14px;
+    margin: 28px 14px;
+    text-shadow: 4px 6px 8px rgba(164, 86, 206, 0.4);
 }
 .search-box {
     width: 46%;
@@ -161,7 +162,7 @@ const hideOptions = () => {
 
 #more {
     position: relative;
-    font-size: 20px;
+    font-size: large;
     color: gray;
     margin-right: 16px;
     display: flex;
@@ -170,12 +171,11 @@ const hideOptions = () => {
     padding: 0 16px;
 }
 #more:hover {
-    color: black;
+    color: #8338a1;
     background-color: #ECECEC;
     border-radius: 14px;
 }
 .options-box {
-    display: none;
     position: absolute;
     top: 100%;
     width: 160px;

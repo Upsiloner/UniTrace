@@ -21,6 +21,9 @@
             <div class="nav-icon"><UIcon name="i-heroicons-cube" /></div>
             娱乐
         </router-link>
+        <div class="avatar">
+            <avatar />
+        </div>
     </nav>
 </template>
 
@@ -69,5 +72,9 @@
 .nav-icon {
     margin-right: 8px;
     font-size: larger;
+}
+.avatar {
+    margin-top: auto;
+    margin-bottom: 90px;
 }
 </style>

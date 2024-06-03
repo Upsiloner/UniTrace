@@ -1,8 +1,5 @@
 <template>
-    <div><NuxtImg id="loginimg" src="/launch_page/login.jpg"/></div>
-    <div><NuxtImg id="loginimg" src="/launch_page/login.jpg"/></div>
-    <div><NuxtImg id="loginimg" src="/launch_page/login.jpg"/></div>
-    <div><NuxtImg id="loginimg" src="/launch_page/login.jpg"/></div>
+    square
 </template>
 
 <script setup>
