@@ -1,14 +1,14 @@
 <template>
     <div class="user-box">
         <div class="avatar" @mouseenter="showOptions" @mouseleave="hideOptions">
-            <NuxtImg id="avatar" src="/default_avatar.jpg"/>
+            <NuxtImg id="avatar" src="/default_avatar.png"/>
             <div class="choose-box" v-show="showOptionsBox">
                 <div class="choose-content">
                     <router-link to="#">
                         切换账户
                         <div class="more-icon"><UIcon name="i-heroicons-user-plus" /></div>
                     </router-link>
-                    <router-link to="#">
+                    <router-link to="/">
                         退出登录
                         <div class="more-icon"><UIcon name="i-heroicons-arrow-right-start-on-rectangle-20-solid" /></div>
                     </router-link>
@@ -23,7 +23,7 @@
 
 <script setup>
 import { ref } from 'vue';
-const username = ref("弓长宝鱼");
+const username = ref("哼哼果");
 
 const showOptionsBox = ref(false);
 const showOptions = () => {
@@ -48,8 +48,9 @@ const hideOptions = () => {
     background-color: #ECECEC;
 }
 #avatar {
-    width: 36px;
+    width: 40px;
     border-radius: 50%;
+    border: #ECECEC solid 2px;
 }
 
 #avatar:hover .options-box {
