@@ -2,74 +2,32 @@
 
 Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
-## Setup
-
-Make sure to install the dependencies:
-
+## Setup and Running
+Mare sure you have the nodejs environment (> version 18)
 ```bash
-# npm
-npm install
-# pnpm
+# Make sure to install the dependencies
 pnpm install
-# yarn
-yarn install
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-# pnpm
+# Start the development server on `http://localhost:3000`
 pnpm run dev
-# yarn
-yarn dev
-# bun
-bun run dev
 ```
 
 ## Production
-
-Build the application for production:
-
 ```bash
-# npm
-npm run build
-# pnpm
+# Build the application for production
 pnpm run build
-# yarn
-yarn build
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-# pnpm
+# Locally preview production build
 pnpm run preview
-# yarn
-yarn preview
-# bun
-bun run preview
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
 
 
-# Development Tool Version Information
-
-```shell
-$ node -v
-> v18.17.1
-$ npm -v
-> 9.6.7
-$ pnpm -v
-> 9.1.3
+# Dockerfile setup
+```bash
+# enter the project directory
+cd ./UniTrace
+# docker image
+docker build -t image-name .
+# docker container
+docker run -d -p port:prot --name container-name image-name
 ```

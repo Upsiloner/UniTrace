@@ -1,0 +1,23 @@
+# 忽略 node_modules 文件夹
+node_modules/
+
+# 忽略构建产物
+.output/
+
+# 忽略开发环境产生的临时文件
+.tmp/
+
+# 忽略日志文件
+logs/
+
+# 忽略测试覆盖率报告
+coverage/
+
+# 忽略其他不需要包含在 Docker 镜像中的文件或文件夹
+.git/
+.vscode/
+.DS_Store
+
+mock/
+
+.nuxt/
