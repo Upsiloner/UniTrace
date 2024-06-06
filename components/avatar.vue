@@ -39,8 +39,9 @@ const hideOptions = () => {
     display: flex;
     align-items: center;
     height: 58px;
-    width: 100%;
-    padding: 10px 10px 10px 22px;
+    width: 190px;
+    align-items: center;
+    padding: 10px 20px 10px 20px;
     border-radius: 16px;
     position: relative;
 }
@@ -51,6 +52,7 @@ const hideOptions = () => {
     width: 40px;
     border-radius: 50%;
     border: #ECECEC solid 2px;
+    min-width: 46px;
 }
 
 #avatar:hover .options-box {
@@ -58,7 +60,7 @@ const hideOptions = () => {
 }
 .username {
     font-size: large;
-    margin-left: 14px;
+    margin-left: 10px;
 }
 .choose-box {
     position: absolute;
@@ -81,6 +83,7 @@ const hideOptions = () => {
     margin-bottom: 20px;
     width: 160px;
     box-shadow: 2px 0px 4px rgba(0, 0, 0, 0.2);
+    background-color: white;
 }
 .choose-content a:hover{
     background-color: #F7F7F7;
@@ -89,5 +92,17 @@ const hideOptions = () => {
     margin-top: 6px;
     margin-left: 8px;
     font-size: larger;
+}
+@media (max-width: 800px) {
+    .username {
+        display: none;
+    }
+    .user-box {
+        padding-left: 4px;
+        width: 60px;
+    }
+    .user-box:hover {
+        background-color: white;
+    }
 }
 </style>

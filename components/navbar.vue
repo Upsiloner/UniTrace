@@ -21,10 +21,10 @@
             <div class="nav-icon"><UIcon name="i-heroicons-cube" /></div>
             娱乐
         </router-link>
-        <div class="avatar">
-            <avatar />
-        </div>
     </nav>
+    <div class="avatar">
+        <avatar />
+    </div>
 </template>
 
 <script setup>
@@ -36,16 +36,18 @@
 .nav-bar {
     display: flex;
     flex-direction: column;
-    width: 240px;
+    width: 232px;
     padding: 1rem;
     margin-left: 10px;
     height: 100vh;
     border-right: #DDDFE2 dashed 2px;
     position: fixed;
+    overflow: hidden;
 }
 
 .nav-bar a {
     color: black;
+    width: 195px;
     text-decoration: none;
     padding: 15px 20px 10px 30px;
     display: flex;
@@ -74,7 +76,24 @@
     font-size: larger;
 }
 .avatar {
-    margin-top: auto;
-    margin-bottom: 90px;
+    margin: auto auto 18px 28px;
+}
+@media (max-width: 800px) {
+    .nav-bar {
+        width: 62px;
+
+        padding-left: 0;
+    }
+    .nav-bar a {
+        padding-left: 0;
+    }
+    .nav-icon {
+        padding-left: 20px;
+        margin-right: 20px;
+    }
+    .avatar {
+        margin-left: 8px;
+        margin-right: 0;
+    }
 }
 </style>

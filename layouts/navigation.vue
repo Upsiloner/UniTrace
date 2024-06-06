@@ -30,10 +30,15 @@
 }
 
 .content {
-    margin-left: 252px;
+    margin: 0 20px 6px 40px;
     flex-grow: 1;
     padding: 1rem;
     overflow-y: auto;
+}
+@media (max-width: 800px) {
+    .content {
+        margin-left: 10px;
+    }
 }
 </style>
   

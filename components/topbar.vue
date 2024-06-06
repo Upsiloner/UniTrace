@@ -15,7 +15,7 @@
         <div class="right">
             <div id="more" @mouseenter="showOptions" @mouseleave="hideOptions">
                 <UIcon name="i-heroicons-bars-3-16-solid"/>
-                <div>更多</div>
+                <div id="more-text">更多</div>
                 <div v-show="showOptionsBox" class="options-box">
                     <div class="options-content">
                         <router-link to="#">
@@ -84,6 +84,7 @@ const hideOptions = () => {
     height: 72px;
     margin-top: 16px;
     margin-left: 36px;
+    min-width: 58px;
 }
 #brand {
     font-size: 36px;
@@ -100,6 +101,7 @@ const hideOptions = () => {
     align-items: center;
     background-color: #ECECEC;
     border-radius: 24px;
+    min-width: 300px;
 }
 .search-box:hover {
     border: #8338a1 solid 1px;
@@ -116,9 +118,11 @@ const hideOptions = () => {
 
 .search-icon {
     margin-left: auto;
-    font-size: 2rem;
+    font-size: 28px;
     color: gray;
     margin-right: 15px;
+    width: 28px;
+    height: 28px;
 }
 
 .search-icon:hover {
@@ -127,10 +131,11 @@ const hideOptions = () => {
 
 .clear-icon {
     margin-left: auto;
-    font-size: 2rem;
+    font-size: 28px;
     color: gray;
     margin-right: 15px;
-    width: 2rem;
+    width: 28px;
+    height: 28px;
 }
 
 .clear-icon:hover {
@@ -152,9 +157,9 @@ const hideOptions = () => {
     height: 100%;
 }
 #mode {
-    font-size: 2rem;
+    font-size: 28px;
     color: gray;
-    margin-right: 40px;
+    margin-right: 38px;
 }
 #mode:hover {
     color: #8338a1;
@@ -168,7 +173,7 @@ const hideOptions = () => {
     display: flex;
     align-items: center;
     height: 60%;
-    padding: 0 16px;
+    padding: 0 12px;
 }
 #more:hover {
     color: #8338a1;
@@ -209,5 +214,31 @@ const hideOptions = () => {
     margin-top: 6px;
     margin-left: 8px;
     font-size: larger;
+}
+
+@media (max-width: 800px) {
+    #brand {
+        display: none;
+    }
+    .left {
+        width: 120px;
+    }
+    #logo {
+        height: 58px;
+        margin: 0;
+        margin-right: 20px;
+    }
+    .middle {
+        margin-left: 6px;
+    }
+}
+@media (max-width: 700px) {
+    #more-text {
+        display: none;
+    }
+    #more {
+        margin-right: 0px;
+        margin-left: 16px;
+    }
 }
 </style>
