@@ -101,7 +101,7 @@ const hideOptions = () => {
     align-items: center;
     background-color: #ECECEC;
     border-radius: 24px;
-    min-width: 300px;
+    min-width: 184px;
 }
 .search-box:hover {
     border: #8338a1 solid 1px;

@@ -43,6 +43,7 @@
     border-right: #DDDFE2 dashed 2px;
     position: fixed;
     overflow: hidden;
+    transition: width 0.2s ease;
 }
 
 .nav-bar a {
