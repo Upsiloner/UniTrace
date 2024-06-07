@@ -8,43 +8,45 @@
 
     <!-- data -->
     <div class="form-container">
-        <h2 id="welcome">欢迎来到宇迹</h2>
-        
-        <div class="title">用户名:</div>
-        <UInput
-            class="box"
-            icon="i-heroicons-user"
-            size="xl"
-            color="purple"
-            placeholder="输入用户名..."
-        />
-        <div class="prompt">{{ name_msg }}</div>
-        
-        <div class="title">密码:</div>
-        <UInput 
-            class="box" 
-            size="xl" 
-            icon="i-heroicons-lock-closed"
-            type="password" 
-            color="purple" 
-            variant="outline" 
-            placeholder="输入密码..." 
-        />
-        <div class="prompt">{{ pswd_mag }}</div>
-
-        <div id="checkandlink">
-            <UCheckbox class="mt-1" v-model="selected" color="purple" name="Rememberme" label="记住密码" />
+        <div class="form-inner">
+            <h2 id="welcome">欢迎来到宇迹</h2>
             
-            <NuxtLink id="link" to="forget">
-                忘记密码？
-            </NuxtLink>
-        </div>
-        <button id="btn" @click="login">登录</button>
-        <div id="toregister">
-            没有账户？
-            <NuxtLink id="link" to="signup">
-                点此注册
-            </NuxtLink>
+            <div class="title">用户名:</div>
+            <UInput
+                class="box"
+                icon="i-heroicons-user"
+                size="xl"
+                color="purple"
+                placeholder="输入用户名..."
+            />
+            <div class="prompt">{{ name_msg }}</div>
+            
+            <div class="title">密码:</div>
+            <UInput 
+                class="box" 
+                size="xl" 
+                icon="i-heroicons-lock-closed"
+                type="password" 
+                color="purple" 
+                variant="outline" 
+                placeholder="输入密码..." 
+            />
+            <div class="prompt">{{ pswd_mag }}</div>
+
+            <div id="checkandlink">
+                <UCheckbox class="mt-1" v-model="selected" color="purple" name="Rememberme" label="记住密码" />
+                
+                <NuxtLink id="link" to="forget">
+                    忘记密码？
+                </NuxtLink>
+            </div>
+            <button id="btn" @click="login">登录</button>
+            <div id="toregister">
+                没有账户？
+                <NuxtLink id="link" to="signup">
+                    点此注册
+                </NuxtLink>
+            </div>
         </div>
     </div>
 </div>
@@ -77,6 +79,7 @@ const login = () => {
     width: 850px;
     height: 600px;
     box-shadow: 0 0 10px #bdb0dd33;
+    transition: width 0.2s ease;
 }
 
 #checkandlink {
@@ -96,7 +99,7 @@ const login = () => {
     width: 100%; 
     height: 100%; 
     object-fit: cover;
-  }
+}
 
 .image-container {
     width: 400px;
@@ -108,6 +111,9 @@ const login = () => {
     flex: 1;
     padding: 20px;
     background-color: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #welcome {
@@ -162,5 +168,21 @@ const login = () => {
     color: red;
     margin-left: 36px;
     height: 28px;
+}
+@media (max-width: 1000px) {
+    .login-container {
+        width: 450px;
+    }
+    .image-container {
+        display: none;
+    }
+}
+@media (max-width: 800px) {
+    .login-container {
+        width: 400px;
+    }
+    .form-inner {
+        margin-left: -12px;
+    }
 }
 </style>

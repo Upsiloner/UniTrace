@@ -1,5 +1,5 @@
 <template>
-  <div class="signup-container">
+  <div class="forget-container">
       <!-- image -->
       <div class="image-container">
           <!-- <image src="/login.jpg" alt="Background Image" layout="fill" object-fit="cover" /> -->
@@ -8,6 +8,7 @@
   
       <!-- data -->
       <div class="form-container">
+        <div class="form-inner">
           <h2 id="welcome">找回你的密码</h2>
           
           
@@ -65,7 +66,7 @@
               <button class="btn2">重置</button>
               <button class="btn3">提交</button>
           </div>
-
+        </div>
       </div>
   </div>
 </template>
@@ -88,13 +89,14 @@ const login = () => {
 </script>
 
 <style scoped>
-.signup-container {
+.forget-container {
   display: flex;
   border-radius: 10px;
   overflow: hidden;
   width: 850px;
   height: 650px;
   box-shadow: 0 0 10px #bdb0dd33;
+  transition: width 0.2s ease;
 }
 
 .image-container {
@@ -114,6 +116,9 @@ const login = () => {
   flex: 1;
   padding: 20px;
   background-color: #f9f9f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #welcome {
@@ -215,6 +220,21 @@ const login = () => {
   margin-left: 36px;
   height: 28px;
 }
-  
+@media (max-width: 1000px) {
+  .forget-container {
+      width: 450px;
+  }
+  .image-container {
+      display: none;
+  }
+}  
+@media (max-width: 800px) {
+  .forget-container {
+      width: 400px;
+  }
+  .form-inner {
+    margin-left: -12px;
+  }
+}
 </style>
   
