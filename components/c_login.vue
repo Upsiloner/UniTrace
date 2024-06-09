@@ -18,6 +18,7 @@
                 size="xl"
                 color="purple"
                 placeholder="输入用户名..."
+                v-model="username"
             />
             <div class="prompt">{{ name_msg }}</div>
             
@@ -30,6 +31,7 @@
                 color="purple" 
                 variant="outline" 
                 placeholder="输入密码..." 
+                v-model="password" 
             />
             <div class="prompt">{{ pswd_mag }}</div>
 
@@ -55,6 +57,7 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { UserLogin } from '~/api/auth'
 const router = useRouter();
 
 const username = ref('');
@@ -64,10 +67,18 @@ const selected = ref(false);
 const name_msg = ref('');
 const pswd_mag = ref('');
 
-const login = () => {
-    // console.log('用户名:', this.username);
-    // console.log('密码:', this.password);
-    router.push("main");
+async function login() {
+    try {
+        const data = await UserLogin(username.value, password.value)
+        if (data.status === 0) {
+            router.push("main/square");
+        } else {
+            alert('用户名或密码错误');
+        }
+    } catch (error) {
+        console.error('登录失败:', error);
+        alert('登录失败！');
+    }
 }
 </script>
 

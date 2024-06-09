@@ -17,4 +17,19 @@ export default defineNuxtConfig({
       ]
     },
   },
+  runtimeConfig: {
+    public: {
+      apiBase: process.env.API_BASE || 'http://localhost:8000',
+    }
+  },
+  vite: {
+    server: {
+      proxy: {
+        '/api': {
+          target: 'http://localhost:8000',
+          changeOrigin: true
+        }
+      }
+    }
+  }
 })

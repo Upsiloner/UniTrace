@@ -1,5 +1,5 @@
 # 使用官方 Node.js 镜像作为基础镜像
-FROM node:18-alpine
+FROM node:18.19.1 as builder
 ENV NODE_ENV=production
 
 # 设置工作目录
@@ -9,6 +9,7 @@ WORKDIR /app
 COPY package.json pnpm-lock.yaml ./
 
 # 安装 pnpm
+RUN npm config set registry https://registry.npmmirror.com
 RUN npm install -g pnpm
 
 # 使用 pnpm 安装依赖

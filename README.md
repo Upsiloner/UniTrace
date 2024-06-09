@@ -22,7 +22,7 @@ pnpm run preview
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
 
 
-# Dockerfile setup
+## Dockerfile setup
 ```bash
 # enter the project directory
 cd ./UniTrace
