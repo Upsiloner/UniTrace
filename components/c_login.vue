@@ -33,7 +33,7 @@
                 placeholder="输入密码..." 
                 v-model="password" 
             />
-            <div class="prompt">{{ pswd_mag }}</div>
+            <div class="prompt">{{ pswd_msg }}</div>
 
             <div id="checkandlink">
                 <UCheckbox class="mt-1" v-model="selected" color="purple" name="Rememberme" label="记住密码" />
@@ -65,15 +65,56 @@ const password = ref('');
 const selected = ref(false);
 
 const name_msg = ref('');
-const pswd_mag = ref('');
+const pswd_msg = ref('');
 
+// Regular expressions for validation
+const usernamePattern = /^[^\s]{1,10}$/; // No spaces, length up to 10
+const passwordPattern = /^[A-Za-z0-9!@#$%^&*()_+=-]{6,18}$/; // Letters, numbers, and symbols, length 6-18
+
+const validateUsername = computed(() => {
+    if (!username.value) {
+        return '用户名不能为空';
+    }
+    if (!usernamePattern.test(username.value)) {
+        return '用户名长度不超过10个字符且不含空格';
+    }
+    return '';
+});
+
+const validatePassword = computed(() => {
+    if (!password.value) {
+        return '密码不能为空';
+    }
+    if (!passwordPattern.test(password.value)) {
+        return '密码必须为6-18位的字母、数字或符号';
+    }
+    return '';
+});
+
+// Watchers to update messages
+watch(username, () => {
+    name_msg.value = validateUsername.value;
+});
+
+watch(password, () => {
+    pswd_msg.value = validatePassword.value;
+});
+
+// login
 async function login() {
     try {
+        if(username.value == "" || password.value == "") {
+            alert('请输入账号与密码！');
+            return;
+        }
         const data = await UserLogin(username.value, password.value)
-        if (data.status === 0) {
+        if (data.code === 200) {
             router.push("main/square");
+            // the store of JWT and other informations.
         } else {
-            alert('用户名或密码错误');
+            username.value = ""
+            password.value = ""
+            alert(data.msg);
         }
     } catch (error) {
         console.error('登录失败:', error);

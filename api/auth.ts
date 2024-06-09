@@ -1,20 +1,19 @@
-export async function UserLogin(username:string, password:string) {
+export async function UserLogin(name:string, password:string) {
     try {
-        const response = await fetch('/api/login', {
+        const response = await fetch('/api/user/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                username,
+                name,
                 password,
             }),
         });
-        const data = await response.json();
-        return { status: data.status, message: data.message };
+        return response.json();
     } catch (error) {
-        console.error('登录失败:', error);
-        return { status: -1, message: '登录失败' };  
+        console.error('请求失败:', error);
+        return { status: -1, message: '请求失败' };  
     }
   }
   
