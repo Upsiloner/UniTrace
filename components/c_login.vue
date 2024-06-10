@@ -57,7 +57,7 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { UserLogin } from '~/api/auth'
+import { UserLogin } from '~/services/api/auth'
 const router = useRouter();
 
 const username = ref('');

@@ -91,7 +91,7 @@
     
 <script setup>
 import { ref } from 'vue';
-import { UserSignupemail, UserSignup } from '~/api/auth';
+import { UserSignupemail, UserSignup } from '~/services/api/auth';
 import { useRouter } from 'vue-router';
 const router = useRouter();
 

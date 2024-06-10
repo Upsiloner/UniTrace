@@ -23,7 +23,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import { UserGetinfo } from '~/api/auth'
+import { UserGetinfo } from '~/services/api/auth'
 const username = ref("加载中...");
 
 const showOptionsBox = ref(false);

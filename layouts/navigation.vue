@@ -34,6 +34,10 @@
     flex-grow: 1;
     padding: 1rem;
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 @media (max-width: 800px) {
     .content {
