@@ -91,6 +91,9 @@
     
 <script setup>
 import { ref } from 'vue';
+import { UserSignupemail, UserSignup } from '~/api/auth';
+import { useRouter } from 'vue-router';
+const router = useRouter();
 
 const username = ref('');
 const email = ref('');
@@ -105,30 +108,46 @@ const pswd1_msg = ref('');
 const pswd2_msg = ref('');
 
 // logics of sending email
-let countdownDuration = 30; // unit: s
+let countdownDuration = 60; // unit: s
 let countdownTimer = null;
 let isDisabled = ref(false);
 let buttonText = ref('发送邮件');
-const SendEmail = () => {
-    isDisabled.value = true;
-    buttonText.value = `重新发送(${countdownDuration}秒)`;
-    countdownTimer = setInterval(() => {
-        countdownDuration--;
-        buttonText.value = `重新发送(${countdownDuration}秒)`;
-        if (countdownDuration <= 0) {
-            clearInterval(countdownTimer);
-            countdownDuration = 30;
-            isDisabled.value = false;
-            buttonText.value = '发送邮件';
+async function SendEmail() {
+    try {
+        if(username.value == "" || email.value == "") {
+            alert('请输入用户名与邮箱！');
+            return;
         }
-    }, 1000);
+        isDisabled.value = true;
+        buttonText.value = `重新发送(${countdownDuration}秒)`;
+        countdownTimer = setInterval(() => {
+            countdownDuration--;
+            buttonText.value = `重新发送(${countdownDuration}秒)`;
+            if (countdownDuration <= 0) {
+                clearInterval(countdownTimer);
+                countdownDuration = 60;
+                isDisabled.value = false;
+                buttonText.value = '发送邮件';
+            }
+        }, 1000);
+        const data = await UserSignupemail(email.value, username.value)
+        if (data.code === 200) {
+            localStorage.setItem('SignupVfySuffix', data.suffix);
+            alert("邮件发送成功！");
+        } else {
+            alert(data.msg);
+        }
+    } catch (error) {
+        console.error('发送失败:', error);
+        alert('发送失败！');
+    }
 }
 
 // Regular expressions for validation
 const usernamePattern = /^[^\s]{1,10}$/; // No spaces, length up to 10
 const passwordPattern = /^[A-Za-z0-9!@#$%^&*()_+=-]{6,18}$/; // Letters, numbers, and symbols, length 6-18
 const emailPattern = /^[\w.-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-const codePattern = /^\d{6}$/;
+const codePattern = /^[a-zA-Z0-9]{6}$/;
 
 const validateUsername = computed(() => {
     if (!username.value) {
@@ -145,7 +164,7 @@ const validateCode = computed(() => {
         return '验证码不能为空';
     }
     if (!codePattern.test(vfycode.value)) {
-        return '验证码为6位数字';
+        return '验证码为6位字母';
     }
     return '';
 });
@@ -192,9 +211,24 @@ watch(vfycode, () => {
 });
 
 // signup
-const signup = () => {
-    // console.log('用户名:', this.username);
-    // console.log('密码:', this.password);
+async function signup() {
+    try {
+        if(username.value == "" || password1.value == "" || password2.value == "" || email.value == "" || vfycode.value == "") {
+            alert('请输入完整信息！');
+            return;
+        }
+        const suffix = localStorage.getItem('SignupVfySuffix') || '';
+        const data = await UserSignup(username.value, email.value, password1.value, vfycode.value, suffix);
+        if (data.code === 200) {
+            alert("注册成功，请登录！")
+            router.push('/login');
+        } else {
+            alert(data.msg);
+        }
+    } catch (error) {
+        console.error('注册失败:', error);
+        alert('注册失败！');
+    }
 }
 
 // reset

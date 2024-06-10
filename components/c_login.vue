@@ -107,8 +107,10 @@ async function login() {
             alert('请输入账号与密码！');
             return;
         }
-        const data = await UserLogin(username.value, password.value)
+        const data = await UserLogin(username.value, password.value);
         if (data.code === 200) {
+            localStorage.setItem("union_id", data.union_id)
+            localStorage.setItem("token", data.token)
             router.push("main/square");
             // the store of JWT and other informations.
         } else {

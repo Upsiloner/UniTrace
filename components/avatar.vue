@@ -22,8 +22,9 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-const username = ref("哼哼果");
+import { ref, onMounted } from 'vue';
+import { UserGetinfo } from '~/api/auth'
+const username = ref("加载中...");
 
 const showOptionsBox = ref(false);
 const showOptions = () => {
@@ -32,6 +33,24 @@ const showOptions = () => {
 const hideOptions = () => {
   showOptionsBox.value = false;
 }
+
+// get user information
+async function GetUserInfo() {
+    try {
+        const data = await UserGetinfo();
+        if (data.code === 200) {
+            username.value = data.user.name;
+        } else {
+            console.error(data.msg);
+        }
+    } catch (error) {
+        console.error('查询失败:', error);
+    }
+}
+// onMounted
+onMounted(() => {
+    GetUserInfo();
+});
 </script>
 
 <style>
