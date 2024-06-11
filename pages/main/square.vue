@@ -1,5 +1,5 @@
 <template>
-    square
+    <game_kun />
 </template>
 
 <script setup>
