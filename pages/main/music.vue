@@ -1,5 +1,7 @@
 <template>
-    <musicbar />
+    <div class="musicpage">
+        <musicplayer />
+    </div>
     
 </template>
 
@@ -15,4 +17,9 @@ useHead({
 </script>
 
 <style>
+.musicpage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 </style>

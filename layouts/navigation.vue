@@ -35,7 +35,6 @@
     padding: 1rem;
     overflow-y: auto;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
 }

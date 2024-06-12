@@ -69,10 +69,12 @@ const hideOptions = () => {
     width: 100%;
     display: flex;
     align-items: center;
-    height: 70px;
-    margin-top: 8px;
+    height: 78px;
+    padding: 8px 0;
     margin-bottom: 10px;
     position: fixed;
+    background: linear-gradient(45deg, #fbe2e2, #f0e1ff, #c9e0f6, #ecfcec);
+    box-shadow: 0 4px 10px rgba(122, 93, 180, 0.1);
 }
 .left {
     width: 240px;
@@ -99,7 +101,7 @@ const hideOptions = () => {
     margin: 0;
     display: flex;
     align-items: center;
-    background-color: #ECECEC;
+    background-color: #ffffff;
     border-radius: 24px;
     min-width: 184px;
 }
@@ -158,7 +160,7 @@ const hideOptions = () => {
 }
 #mode {
     font-size: 28px;
-    color: gray;
+    color: rgb(87, 87, 87);
     margin-right: 38px;
 }
 #mode:hover {
@@ -168,7 +170,7 @@ const hideOptions = () => {
 #more {
     position: relative;
     font-size: large;
-    color: gray;
+    color: rgb(87, 87, 87);
     margin-right: 16px;
     display: flex;
     align-items: center;

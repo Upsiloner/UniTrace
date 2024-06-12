@@ -20,9 +20,13 @@
 
         <!-- Choose Bar -->
         <div class="choose-bar">
+            <UIcon class="collect" :class="{ 'active': isActive }" @click="toggleColor" name="i-heroicons-heart-solid" />
+            <UIcon class="change-music" name="i-heroicons-chevron-double-left-16-solid" @click="last_song" />
             <div @click="togglePlay" class="play-button">
                 <UIcon class="play-icon" :name="isPlaying ? 'i-heroicons-pause-20-solid' : 'i-heroicons-play-solid'"/>
             </div>
+            <UIcon class="change-music" name="i-heroicons-chevron-double-right-16-solid" @click="next_song" />
+            <UIcon class="choose-music" name="i-heroicons-bars-3-bottom-left-16-solid" />
         </div> 
     </div>
 </template>
@@ -30,6 +34,7 @@
 <script setup>
 import { ref, onMounted, watch } from 'vue';
 import { formatTime } from '~/services/utils/timer';
+const snackbar = useSnackbar();
 const song_title = '裹着心的光';
 const artist_name = '林俊杰';
 const cover = ref('/music_cover.png');
@@ -40,6 +45,7 @@ const duration_bar = ref("00:00");
 let pregressChangeTime = 0;
 const currentTime = ref(0);
 const duration = ref(0);
+let num = 0;
 
 // bgein or stop the music
 const togglePlay = () => {
@@ -79,6 +85,24 @@ const onProgressChange = () => {
     audio.value.currentTime = pregressChangeTime;
 };
 
+// music collection
+const isActive = ref(false);
+const toggleColor = () => {
+  isActive.value = !isActive.value;
+}
+
+// change music
+const last_song = () => {
+    if(num <= 1) {
+        snackbar.add({ type: 'warning', text: '曲库还未更新，敬请期待~' })
+    }
+}
+const next_song = () => {
+    if(num <= 1) {
+        snackbar.add({ type: 'warning', text: '曲库还未更新，敬请期待~' })
+    }
+}
+
 </script>
 
 <style>
@@ -101,6 +125,7 @@ const onProgressChange = () => {
     height: 300px;
     object-fit: cover;
     margin-bottom: 20px;
+    transition: width 0.2s ease;
 }
   
 .cover-image img {
@@ -128,6 +153,7 @@ const onProgressChange = () => {
     display: flex;
     flex-direction: column;
     align-items: center;
+    transition: width 0.2s ease;
 }
 
 .info {
@@ -152,8 +178,16 @@ const onProgressChange = () => {
     font-size: 14px;
 }
 
+.choose-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 26px;
+    width: 100%;
+}
+
 .play-button {
-    margin-top: 22px;
+    margin: 0 16px;
     width: 46px;
     height: 46px;
     border: #aa75e9 solid 2px;
@@ -172,6 +206,36 @@ const onProgressChange = () => {
     color: #9634f1;
     font-size: 28px;
 }
+
+.change-music {
+    color: gray;
+    font-size: 34px;
+}
+.change-music:hover {
+    color: #9634f1;
+}
+
+.collect {
+    color: rgb(164, 164, 164);
+    font-size: 30px;
+    margin-right: auto;
+}
+.collect:hover{
+    color: gray;
+}
+.collect.active {
+    color: rgb(214, 30, 30);
+}
+
+.choose-music {
+    color: gray;
+    font-size: 30px;
+    margin-left: auto;
+}
+.choose-music:hover {
+    color: #9634f1;
+}
+
 @media (max-width: 600px) {
     .music-player {
         width: 260px;
@@ -179,6 +243,9 @@ const onProgressChange = () => {
     .cover-image {
         width: 200px;
         height: 200px;
+    }
+    .play-button {
+        margin: 0;
     }
 }
 </style>

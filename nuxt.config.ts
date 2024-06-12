@@ -1,7 +1,12 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ["@nuxt/ui", '@nuxtjs/tailwindcss', "@nuxt/image"],
+  modules: ["@nuxt/ui", '@nuxtjs/tailwindcss', "@nuxt/image", 'nuxt-snackbar'],
+  snackbar: {
+    bottom: true,
+    right: true,
+    duration: 3000
+  },
   css: [
     '~/assets/css/center.css',
     '~/assets/css/bg.css',

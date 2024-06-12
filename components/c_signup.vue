@@ -94,7 +94,7 @@ import { ref } from 'vue';
 import { UserSignupemail, UserSignup } from '~/services/api/auth';
 import { useRouter } from 'vue-router';
 const router = useRouter();
-
+const snackbar = useSnackbar();
 const username = ref('');
 const email = ref('');
 const password1 = ref('');
@@ -115,7 +115,7 @@ let buttonText = ref('发送邮件');
 async function SendEmail() {
     try {
         if(username.value == "" || email.value == "") {
-            alert('请输入用户名与邮箱！');
+            snackbar.add({ type: 'warning', text: '请输入用户名与邮箱！' })
             return;
         }
         isDisabled.value = true;
@@ -133,13 +133,13 @@ async function SendEmail() {
         const data = await UserSignupemail(email.value, username.value)
         if (data.code === 200) {
             localStorage.setItem('SignupVfySuffix', data.suffix);
-            alert("邮件发送成功！");
+            snackbar.add({ type: 'warning', text: '邮件发送成功！！' })
         } else {
-            alert(data.msg);
+            snackbar.add({ type: 'warning', text: data.msg })
         }
     } catch (error) {
         console.error('发送失败:', error);
-        alert('发送失败！');
+        snackbar.add({ type: 'error', text: '发送失败！' })
     }
 }
 
@@ -214,20 +214,20 @@ watch(vfycode, () => {
 async function signup() {
     try {
         if(username.value == "" || password1.value == "" || password2.value == "" || email.value == "" || vfycode.value == "") {
-            alert('请输入完整信息！');
+            snackbar.add({ type: 'warning', text: '请输入完整信息！' })
             return;
         }
         const suffix = localStorage.getItem('SignupVfySuffix') || '';
         const data = await UserSignup(username.value, email.value, password1.value, vfycode.value, suffix);
         if (data.code === 200) {
-            alert("注册成功，请登录！")
+            snackbar.add({ type: 'warning', text: '注册成功，请登录！' })
             router.push('/login');
         } else {
-            alert(data.msg);
+            snackbar.add({ type: 'warning', text: data.msg })
         }
     } catch (error) {
         console.error('注册失败:', error);
-        alert('注册失败！');
+        snackbar.add({ type: 'error', text: '注册失败！' })
     }
 }
 

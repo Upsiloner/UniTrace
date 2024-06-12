@@ -65,7 +65,7 @@ onMounted(() => {
     position: relative;
 }
 .user-box:hover {
-    background-color: #ECECEC;
+    background-color: #f9ebfc;
 }
 #avatar {
     width: 40px;

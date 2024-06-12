@@ -59,7 +59,7 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { UserLogin } from '~/services/api/auth'
 const router = useRouter();
-
+const snackbar = useSnackbar();
 const username = ref('');
 const password = ref('');
 const selected = ref(false);
@@ -104,7 +104,7 @@ watch(password, () => {
 async function login() {
     try {
         if(username.value == "" || password.value == "") {
-            alert('请输入账号与密码！');
+            snackbar.add({ type: 'warning', text: '请输入账号与密码！' })
             return;
         }
         const data = await UserLogin(username.value, password.value);
@@ -116,11 +116,11 @@ async function login() {
         } else {
             username.value = ""
             password.value = ""
-            alert(data.msg);
+            snackbar.add({ type: 'warning', text: data.msg })
         }
     } catch (error) {
         console.error('登录失败:', error);
-        alert('登录失败！');
+        snackbar.add({ type: 'error', text: '登录失败！' })
     }
 }
 </script>

@@ -60,7 +60,7 @@
 }
 
 .nav-bar a:hover {
-    background-color: #ECECEC;
+    background-color: #f9ebfc;
 }
 
 .nav-bar a:hover > div{
@@ -69,7 +69,7 @@
 }
 
 .nav-bar a.active {
-    background-color: #ECECEC;
+    background-color: #f9ebfc;
 }
 
 .nav-icon {
