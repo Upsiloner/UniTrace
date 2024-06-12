@@ -4,7 +4,8 @@
 
 <script setup>
 definePageMeta({
-    layout: 'navigation'
+    layout: 'navigation',
+    keepalive: true
 })
 </script>
 

@@ -8,6 +8,9 @@
 </template>
 
 <script setup>
+useHead({
+    title: 'UniTrace -- 登录'
+})
 </script>
 
 <style>
