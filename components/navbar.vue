@@ -60,7 +60,7 @@
 }
 
 .nav-bar a:hover {
-    background-color: #f9ebfc;
+    background-color: #EDE1FF;
 }
 
 .nav-bar a:hover > div{
@@ -69,7 +69,7 @@
 }
 
 .nav-bar a.active {
-    background-color: #f9ebfc;
+    background-color: #EDE1FF;
 }
 
 .nav-icon {
@@ -78,6 +78,7 @@
 }
 .avatar {
     margin: auto auto 18px 28px;
+    z-index: 10;
 }
 @media (max-width: 800px) {
     .nav-bar {

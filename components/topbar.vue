@@ -69,8 +69,8 @@ const hideOptions = () => {
     width: 100%;
     display: flex;
     align-items: center;
-    height: 78px;
-    padding: 8px 0;
+    height: 70px;
+    padding: 3px 0;
     margin-bottom: 10px;
     position: fixed;
     background: linear-gradient(45deg, #fbe2e2, #f0e1ff, #c9e0f6, #ecfcec);

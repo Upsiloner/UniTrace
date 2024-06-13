@@ -26,26 +26,37 @@
                 <UIcon class="play-icon" :name="isPlaying ? 'i-heroicons-pause-20-solid' : 'i-heroicons-play-solid'"/>
             </div>
             <UIcon class="change-music" name="i-heroicons-chevron-double-right-16-solid" @click="next_song" />
-            <UIcon class="choose-music" name="i-heroicons-bars-3-bottom-left-16-solid" />
-        </div> 
+            <UIcon class="choose-music" name="i-heroicons-bars-3-bottom-left-16-solid" @click="toggleSongList" />
+            <div v-if="showSongList" class="song-list">
+                <ul>
+                  <li v-for="(song, index) in musicList" :key="index" @click="chooseMisic(index)">
+                    {{ song.title }} - {{ song.artist }}
+                  </li>
+                </ul>
+            </div>
+        </div>
     </div>
 </template>
 
 <script setup>
 import { ref, onMounted, watch } from 'vue';
 import { formatTime } from '~/services/utils/timer';
+import { musicList } from '~/public/music/musicConfig';
 const snackbar = useSnackbar();
-const song_title = '裹着心的光';
-const artist_name = '林俊杰';
+const showSongList = ref(false);
 const cover = ref('/music_cover.png');
-const audio = ref(new Audio('/music.mp3'));
 const isPlaying = ref(false);
 const current_progress_bar = ref("00:00");
 const duration_bar = ref("00:00");
 let pregressChangeTime = 0;
 const currentTime = ref(0);
 const duration = ref(0);
-let num = 0;
+const currentIndex = ref(0);
+let currentSong = musicList[currentIndex.value];
+let songNum = musicList.length;
+const audio = ref(new Audio(currentSong.path));
+const artist_name = ref(currentSong.artist);
+const song_title = ref(currentSong.title);
 
 // bgein or stop the music
 const togglePlay = () => {
@@ -88,20 +99,61 @@ const onProgressChange = () => {
 // music collection
 const isActive = ref(false);
 const toggleColor = () => {
-  isActive.value = !isActive.value;
+    isActive.value = !isActive.value;
+    if(isActive.value) {
+        console.log(songNum.value);
+        snackbar.add({ type: 'success', text: '收藏成功~' })
+    } else {
+        snackbar.add({ type: 'success', text: '取消收藏~' })
+    }
 }
 
 // change music
 const last_song = () => {
-    if(num <= 1) {
+    if(songNum <= 1) {
         snackbar.add({ type: 'warning', text: '曲库还未更新，敬请期待~' })
     }
+    if(currentIndex.value == 0) {
+        currentIndex.value = musicList.length - 1;
+    } else {
+        currentIndex.value  = currentIndex.value - 1;
+    }
+    currentSong = computed(() => musicList[currentIndex.value]);
+    audio.value.src = currentSong.value.path;
+    artist_name.value = currentSong.value.artist;
+    song_title.value = currentSong.value.title;
+    audio.value.load();
+    audio.value.play();
+    isPlaying.value = true;
 }
 const next_song = () => {
-    if(num <= 1) {
+    if(songNum <= 1) {
         snackbar.add({ type: 'warning', text: '曲库还未更新，敬请期待~' })
     }
+    currentIndex.value = (currentIndex.value + 1) % songNum;
+    currentSong = computed(() => musicList[currentIndex.value]);
+    audio.value.src = currentSong.value.path;
+    artist_name.value = currentSong.value.artist;
+    song_title.value = currentSong.value.title;
+    audio.value.load();
+    audio.value.play();
+    isPlaying.value = true;
 }
+
+// choose music
+const toggleSongList = () => {
+  showSongList.value = !showSongList.value;
+};
+const chooseMisic = (index) => {
+    currentIndex.value = index;
+    currentSong = computed(() => musicList[currentIndex.value]);
+    audio.value.src = currentSong.value.path;
+    artist_name.value = currentSong.value.artist;
+    song_title.value = currentSong.value.title;
+    audio.value.load();
+    audio.value.play();
+    isPlaying.value = true;
+};
 
 </script>
 
@@ -184,6 +236,7 @@ const next_song = () => {
     align-items: center;
     margin-top: 26px;
     width: 100%;
+    position: relative;
 }
 
 .play-button {
@@ -236,6 +289,40 @@ const next_song = () => {
     color: #9634f1;
 }
 
+.song-list {
+    position: absolute;
+    bottom: 40px;
+    right: 0px;
+    width: 200px;
+    max-height: 300px;
+    overflow-y: auto;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 14px;
+    z-index: 1000;
+}
+  
+.song-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+  
+.song-list li {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.song-list li:hover {
+    background-color: #EDE1FF;
+    border-radius: 10px;
+}
+  
+.song-list li:last-child {
+    border-bottom: none;
+}
+
 @media (max-width: 600px) {
     .music-player {
         width: 260px;
@@ -246,6 +333,9 @@ const next_song = () => {
     }
     .play-button {
         margin: 0;
+    }
+    .song-list {
+        width: 160px;
     }
 }
 </style>
