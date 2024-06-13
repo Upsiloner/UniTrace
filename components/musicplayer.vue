@@ -1,5 +1,5 @@
 <template>
-    <div class="music-player">
+    <div class="music-player" @click="allreact">
         <!-- Cover Image -->
         <div class="cover-image">
             <NuxtImg id="signimg" :src="cover" />
@@ -29,9 +29,14 @@
             <UIcon class="choose-music" name="i-heroicons-bars-3-bottom-left-16-solid" @click="toggleSongList" />
             <div v-if="showSongList" class="song-list">
                 <ul>
-                  <li v-for="(song, index) in musicList" :key="index" @click="chooseMisic(index)">
-                    {{ song.title }} - {{ song.artist }}
-                  </li>
+                    <li 
+                        v-for="(song, index) in musicList" 
+                        :key="index" 
+                        @click="chooseMisic(index)"
+                        :class="{ 'selected': selectedIndex === index }"
+                    >
+                        {{ song.title }} - {{ song.artist }}
+                    </li>
                 </ul>
             </div>
         </div>
@@ -53,6 +58,7 @@ const currentTime = ref(0);
 const duration = ref(0);
 const currentIndex = ref(0);
 let currentSong = musicList[currentIndex.value];
+const selectedIndex = ref(currentIndex.value);
 let songNum = musicList.length;
 const audio = ref(new Audio(currentSong.path));
 const artist_name = ref(currentSong.artist);
@@ -101,10 +107,9 @@ const isActive = ref(false);
 const toggleColor = () => {
     isActive.value = !isActive.value;
     if(isActive.value) {
-        console.log(songNum.value);
-        snackbar.add({ type: 'success', text: '收藏成功~' })
+        snackbar.add({ type: 'success', text: '成功收藏<' + song_title.value + '>' });
     } else {
-        snackbar.add({ type: 'success', text: '取消收藏~' })
+        snackbar.add({ type: 'success', text: '取消收藏<' + song_title.value + '>' })
     }
 }
 
@@ -118,6 +123,7 @@ const last_song = () => {
     } else {
         currentIndex.value  = currentIndex.value - 1;
     }
+    selectedIndex.value = currentIndex.value;
     currentSong = computed(() => musicList[currentIndex.value]);
     audio.value.src = currentSong.value.path;
     artist_name.value = currentSong.value.artist;
@@ -131,6 +137,7 @@ const next_song = () => {
         snackbar.add({ type: 'warning', text: '曲库还未更新，敬请期待~' })
     }
     currentIndex.value = (currentIndex.value + 1) % songNum;
+    selectedIndex.value = currentIndex.value;
     currentSong = computed(() => musicList[currentIndex.value]);
     audio.value.src = currentSong.value.path;
     artist_name.value = currentSong.value.artist;
@@ -142,17 +149,24 @@ const next_song = () => {
 
 // choose music
 const toggleSongList = () => {
-  showSongList.value = !showSongList.value;
+    showSongList.value = !showSongList.value;
+};
+const allreact = (event) => {
+    if(showSongList.value && !event.target.classList.contains('choose-music')) showSongList.value = !showSongList.value;
 };
 const chooseMisic = (index) => {
-    currentIndex.value = index;
-    currentSong = computed(() => musicList[currentIndex.value]);
-    audio.value.src = currentSong.value.path;
-    artist_name.value = currentSong.value.artist;
-    song_title.value = currentSong.value.title;
-    audio.value.load();
-    audio.value.play();
-    isPlaying.value = true;
+    if(currentIndex.value != index) {
+        currentIndex.value = index;
+        selectedIndex.value = index;
+        currentSong = computed(() => musicList[currentIndex.value]);
+        audio.value.src = currentSong.value.path;
+        artist_name.value = currentSong.value.artist;
+        song_title.value = currentSong.value.title;
+        audio.value.load();
+        audio.value.play();
+        isPlaying.value = true;
+    }
+    showSongList.value = !showSongList.value;
 };
 
 </script>
@@ -293,14 +307,20 @@ const chooseMisic = (index) => {
     position: absolute;
     bottom: 40px;
     right: 0px;
-    width: 200px;
-    max-height: 300px;
+    width: 220px;
+    max-height: 280px;
     overflow-y: auto;
-    background-color: white;
-    border: 1px solid #ccc;
+    background: linear-gradient(
+        45deg, 
+        rgba(244, 234, 255, 1),
+        rgba(230, 243, 255, 1),
+        rgba(240, 255, 240, 0.9)
+    );
+    border: 2px solid #ccc;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 14px;
     z-index: 1000;
+    
 }
   
 .song-list ul {
@@ -312,10 +332,15 @@ const chooseMisic = (index) => {
 .song-list li {
     padding: 10px;
     border-bottom: 1px solid #eee;
+    margin-left: 15px;
+    cursor: pointer;
+    white-space: nowrap; /* 防止文字换行 */
+    overflow: hidden;
+    text-overflow: ellipsis; /* 溢出时显示省略号 */
 }
 
 .song-list li:hover {
-    background-color: #EDE1FF;
+    background-color: #E5E7EB;
     border-radius: 10px;
 }
   
@@ -323,6 +348,10 @@ const chooseMisic = (index) => {
     border-bottom: none;
 }
 
+.song-list li.selected {
+    color: #A856F5;
+    font-weight: bold;
+}
 @media (max-width: 600px) {
     .music-player {
         width: 260px;
@@ -336,6 +365,9 @@ const chooseMisic = (index) => {
     }
     .song-list {
         width: 160px;
+    }
+    .song-list li {
+        margin-left: 8px;
     }
 }
 </style>
