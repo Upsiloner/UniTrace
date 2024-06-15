@@ -85,8 +85,9 @@ onMounted(() => {
 // 监听音频播放时间变化事件
 watch(currentTime, () => {
     if(currentTime.value == duration.value) {
-        audio.value.currentTime = 0;
-        isPlaying.value = !isPlaying.value;
+        // audio.value.currentTime = 0;
+        // isPlaying.value = !isPlaying.value;
+        next_song();
     }
     current_progress_bar.value = formatTime(currentTime.value);
 });
@@ -307,7 +308,7 @@ const chooseMisic = (index) => {
     position: absolute;
     bottom: 40px;
     right: 0px;
-    width: 220px;
+    width: 230px;
     max-height: 280px;
     overflow-y: auto;
     background: linear-gradient(
@@ -331,8 +332,8 @@ const chooseMisic = (index) => {
   
 .song-list li {
     padding: 10px;
-    border-bottom: 1px solid #eee;
-    margin-left: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.902);
+    padding-left: 24px;
     cursor: pointer;
     white-space: nowrap; /* 防止文字换行 */
     overflow: hidden;
@@ -354,20 +355,20 @@ const chooseMisic = (index) => {
 }
 @media (max-width: 600px) {
     .music-player {
-        width: 260px;
+        width: 330px;
     }
     .cover-image {
-        width: 200px;
-        height: 200px;
+        width: 250px;
+        height: 250px;
     }
     .play-button {
         margin: 0;
     }
     .song-list {
-        width: 160px;
+        width: 170px;
     }
     .song-list li {
-        margin-left: 8px;
+        padding-left: 15px;
     }
 }
 </style>

@@ -30,7 +30,7 @@
 }
 
 .content {
-    margin: 0 20px 6px 40px;
+    margin: 0 20px 6px 20px;
     flex-grow: 1;
     padding: 1rem;
     overflow-y: auto;
@@ -40,7 +40,7 @@
 }
 @media (max-width: 800px) {
     .content {
-        margin-left: 10px;
+        margin: 0;
     }
 }
 </style>

@@ -1,39 +1,62 @@
 <!-- layouts/default.vue -->
 <template>
-    <nav class="nav-bar">
-        <router-link to="/main/square" active-class="active">
-            <div class="nav-icon"><UIcon name="i-heroicons-globe-americas" /></div>
-            广场
-        </router-link>
-        <router-link to="/main/publish" active-class="active">
-            <div class="nav-icon"><UIcon name="i-heroicons-arrow-up-tray-20-solid" /></div>
-            发布
-        </router-link>
-        <router-link to="/main/notification" active-class="active">
-            <div class="nav-icon"><UIcon name="i-heroicons-bell" /></div>
-            通知
-        </router-link>
-        <router-link to="/main/music" active-class="active">
-            <div class="nav-icon"><UIcon name="i-heroicons-musical-note" /></div>
-            音乐
-        </router-link>
-        <router-link to="/main/game" active-class="active">
-            <div class="nav-icon"><UIcon name="i-heroicons-cube" /></div>
-            娱乐
-        </router-link>
-    </nav>
-    <div class="avatar">
-        <avatar />
-    </div>
+    <UIcon name="i-heroicons-swatch" @click="isOpen = true" class="bar-ctl"/>
+    <USlideover 
+        v-model="isOpen" 
+        side="left"
+        :ui="{
+            width: 'w-screen max-w-0',
+        }"
+    >
+        <nav class="nav-bar">
+            <router-link to="/main/square" active-class="active">
+                <div class="nav-icon"><UIcon name="i-heroicons-globe-americas" /></div>
+                广场
+            </router-link>
+            <router-link to="/main/publish" active-class="active">
+                <div class="nav-icon"><UIcon name="i-heroicons-arrow-up-tray-20-solid" /></div>
+                发布
+            </router-link>
+            <router-link to="/main/notification" active-class="active">
+                <div class="nav-icon"><UIcon name="i-heroicons-bell" /></div>
+                通知
+            </router-link>
+            <router-link to="/main/music" active-class="active">
+                <div class="nav-icon"><UIcon name="i-heroicons-musical-note" /></div>
+                音乐
+            </router-link>
+            <router-link to="/main/game" active-class="active">
+                <div class="nav-icon"><UIcon name="i-heroicons-cube" /></div>
+                娱乐
+            </router-link>
+        </nav>
+        <div class="avatar">
+            <avatar />
+        </div>
+    </USlideover>
 </template>
 
 <script setup>
+import { ref } from 'vue';
+const isOpen = ref(false);
 </script>
 
 <style scoped>
-
+.bar-ctl {
+    position: fixed;
+    font-size: 30px;
+    margin-left: 18px;
+    color: rgb(177, 177, 177);
+}
+.bar-ctl:hover {
+    color: rgb(178, 143, 185);
+    transform: rotate(90deg);
+    transition: transform 0.2s ease;
+}
 
 .nav-bar {
+    background-color: white;
+    border-radius: 12px;
     display: flex;
     flex-direction: column;
     width: 232px;
@@ -94,7 +117,7 @@
         margin-right: 20px;
     }
     .avatar {
-        margin-left: 8px;
+        margin-left: 13px;
         margin-right: 0;
     }
 }
