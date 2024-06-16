@@ -2,7 +2,7 @@
     <div class="e-muyu">
       <NuxtImg 
         id="signimg" 
-        src="/game/woolenfish.png" 
+        src="/game/woodenfish.png" 
         class="muyu-img" 
         @click="handleClick"
         :style="{ transform: isClicked ? 'scale(0.9)' : 'scale(1)' }"
@@ -52,7 +52,7 @@ const handleClick = async () => {
 }
 
 .muyu-img {
-  width: 150px; /* 设置合适的宽度 */
+  width: 180px; /* 设置合适的宽度 */
   transition: transform 0.2s ease;
 }
 

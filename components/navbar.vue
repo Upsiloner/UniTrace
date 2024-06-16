@@ -105,20 +105,18 @@ const isOpen = ref(false);
 }
 @media (max-width: 800px) {
     .nav-bar {
-        width: 62px;
-
-        padding-left: 0;
+        width: 170px;
     }
     .nav-bar a {
         padding-left: 0;
+        width: 136px;
     }
     .nav-icon {
         padding-left: 20px;
         margin-right: 20px;
     }
     .avatar {
-        margin-left: 13px;
-        margin-right: 0;
+        margin-left: 62px;
     }
 }
 </style>

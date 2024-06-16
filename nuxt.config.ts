@@ -7,6 +7,12 @@ export default defineNuxtConfig({
     right: true,
     duration: 3000
   },
+  ui: {
+    notifications: {
+      // Show toasts at the top right of the screen
+      position: 'top-0 bottom-auto'
+    }
+  },
   css: [
     '~/assets/css/center.css',
     '~/assets/css/bg.css',

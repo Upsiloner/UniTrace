@@ -130,8 +130,11 @@ const last_song = () => {
     artist_name.value = currentSong.value.artist;
     song_title.value = currentSong.value.title;
     audio.value.load();
-    audio.value.play();
-    isPlaying.value = true;
+    if(isPlaying.value) {
+        audio.value.play();
+    } else {
+        audio.value.pause();
+    }
 }
 const next_song = () => {
     if(songNum <= 1) {
@@ -144,8 +147,11 @@ const next_song = () => {
     artist_name.value = currentSong.value.artist;
     song_title.value = currentSong.value.title;
     audio.value.load();
-    audio.value.play();
-    isPlaying.value = true;
+    if(isPlaying.value) {
+        audio.value.play();
+    } else {
+        audio.value.pause();
+    }
 }
 
 // choose music
@@ -164,8 +170,11 @@ const chooseMisic = (index) => {
         artist_name.value = currentSong.value.artist;
         song_title.value = currentSong.value.title;
         audio.value.load();
-        audio.value.play();
-        isPlaying.value = true;
+        if(isPlaying.value) {
+            audio.value.play();
+        } else {
+            audio.value.pause();
+        }
     }
     showSongList.value = !showSongList.value;
 };
