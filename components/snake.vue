@@ -16,14 +16,14 @@
   
   <script setup>
   import { ref, onMounted, onBeforeUnmount } from 'vue';
-  const snackbar = useSnackbar();
-  const canvasSize = 400;
+  const toast = useToast();
+  const canvasSize = 396;
   const gameCanvas = ref(null);
   const context = ref(null);
   const snake = ref([{ x: 50, y: 50 }]);
   const direction = ref('right');
   const food = ref({ x: 0, y: 0 });
-  const gridSize = 10;
+  const gridSize = 12;
   let gameInterval = null;
   const score = ref(0);
   const isGameStarted = ref(false);
@@ -43,7 +43,7 @@
   };
   
   const resetGame = () => {
-    snake.value = [{ x: 50, y: 50 }];
+    snake.value = [{ x: gridSize * 5, y: gridSize * 5 }];
     direction.value = 'right';
   };
 
@@ -117,31 +117,35 @@
       snake.value.slice(1).some((segment) => segment.x === head.x && segment.y === head.y)
     ) {
       clearInterval(gameInterval);
-      snackbar.add({ type: 'warning', text: '游戏结束！' });
+      toast.add({ 
+            title: '游戏结束！',
+            icon: "i-heroicons-information-circle",
+            color: "orange"
+        });
       dead_audio.play();
       isGameStarted.value = false;
     }
   };
   
   const drawGame = () => {
-  context.value.clearRect(0, 0, canvasSize, canvasSize);
+    context.value.clearRect(0, 0, canvasSize, canvasSize);
 
-  // Draw snake
-  snake.value.forEach((segment, index) => {
-    context.value.fillStyle = index === 0 ? '#800080' : '#A686BA'; // Different color for the head
+    // Draw snake
+    snake.value.forEach((segment, index) => {
+        context.value.fillStyle = index === 0 ? '#800080' : '#A686BA'; // Different color for the head
+        context.value.beginPath();
+        roundRect(context.value, segment.x, segment.y, gridSize, gridSize, 4);
+        context.value.fill();
+        context.value.closePath();
+    });
+
+    // Draw food
+    context.value.fillStyle = 'red';
     context.value.beginPath();
-    roundRect(context.value, segment.x, segment.y, gridSize, gridSize, 3);
+    roundRect(context.value, food.value.x, food.value.y, gridSize, gridSize, 4);
     context.value.fill();
     context.value.closePath();
-  });
-
-  // Draw food
-  context.value.fillStyle = 'red';
-  context.value.beginPath();
-  roundRect(context.value, food.value.x, food.value.y, gridSize, gridSize, 3);
-  context.value.fill();
-  context.value.closePath();
-};
+  };
 
 const roundRect = (ctx, x, y, width, height, radius) => {
   ctx.beginPath();

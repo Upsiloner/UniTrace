@@ -4,6 +4,7 @@
       <NuxtPage keepalive />
     </NuxtLayout>
     <NuxtSnackbar />
+    <UNotifications />
   </div>
 </template>
 

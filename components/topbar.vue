@@ -75,6 +75,7 @@ const hideOptions = () => {
     position: fixed;
     background: linear-gradient(45deg, #fbe2e2, #f0e1ff, #c9e0f6, #ecfcec);
     box-shadow: 0 4px 10px rgba(122, 93, 180, 0.1);
+    z-index: 10;
 }
 .left {
     width: 240px;

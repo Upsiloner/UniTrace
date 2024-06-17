@@ -10,7 +10,9 @@ export default defineNuxtConfig({
   ui: {
     notifications: {
       // Show toasts at the top right of the screen
-      position: 'top-0 bottom-auto'
+      position: 'top-0 bottom-auto',
+      timeout: 3000,
+      color: 'purple'
     }
   },
   css: [

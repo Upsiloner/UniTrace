@@ -63,7 +63,7 @@ const change = (index) => {
     padding: 6px 15px;
     width: 130px;
     background-color: #F3F4F6;
-    border-radius: 4px;
+    border-radius: 8px;
     color: rgb(135, 135, 135);
     border: none;
     margin: 0 4px;

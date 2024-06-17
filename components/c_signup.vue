@@ -94,7 +94,7 @@ import { ref } from 'vue';
 import { UserSignupemail, UserSignup } from '~/services/api/auth';
 import { useRouter } from 'vue-router';
 const router = useRouter();
-const snackbar = useSnackbar();
+const toast = useToast();
 const username = ref('');
 const email = ref('');
 const password1 = ref('');
@@ -115,7 +115,11 @@ let buttonText = ref('发送邮件');
 async function SendEmail() {
     try {
         if(username.value == "" || email.value == "") {
-            snackbar.add({ type: 'warning', text: '请输入用户名与邮箱！' })
+            toast.add({ 
+                title: '请输入用户名与邮箱！',
+                icon: "i-heroicons-information-circle",
+                color: "orange"
+            });
             return;
         }
         isDisabled.value = true;
@@ -133,13 +137,25 @@ async function SendEmail() {
         const data = await UserSignupemail(email.value, username.value)
         if (data.code === 200) {
             localStorage.setItem('SignupVfySuffix', data.suffix);
-            snackbar.add({ type: 'warning', text: '邮件发送成功！！' })
+            toast.add({ 
+                title: '邮件发送成功！',
+                icon: "i-heroicons-information-circle",
+                color: "orange"
+            });
         } else {
-            snackbar.add({ type: 'warning', text: data.msg })
+            toast.add({ 
+                title: data.msg,
+                icon: "i-heroicons-information-circle",
+                color: "orange"
+            });
         }
     } catch (error) {
         console.error('发送失败:', error);
-        snackbar.add({ type: 'error', text: '发送失败！' })
+        toast.add({ 
+            title: '发送失败！',
+            icon: "i-heroicons-x-circle",
+            color: "red"
+        });
     }
 }
 
@@ -214,20 +230,36 @@ watch(vfycode, () => {
 async function signup() {
     try {
         if(username.value == "" || password1.value == "" || password2.value == "" || email.value == "" || vfycode.value == "") {
-            snackbar.add({ type: 'warning', text: '请输入完整信息！' })
+            toast.add({ 
+                title: '请输入完整信息！',
+                icon: "i-heroicons-information-circle",
+                color: "orange"
+            });
             return;
         }
         const suffix = localStorage.getItem('SignupVfySuffix') || '';
         const data = await UserSignup(username.value, email.value, password1.value, vfycode.value, suffix);
         if (data.code === 200) {
-            snackbar.add({ type: 'warning', text: '注册成功，请登录！' })
+            toast.add({ 
+                title: '注册成功，请登录！',
+                icon: "i-heroicons-information-circle",
+                color: "orange"
+            });
             router.push('/login');
         } else {
-            snackbar.add({ type: 'warning', text: data.msg })
+            toast.add({ 
+                title: data.msg,
+                icon: "i-heroicons-information-circle",
+                color: "orange"
+            });
         }
     } catch (error) {
         console.error('注册失败:', error);
-        snackbar.add({ type: 'error', text: '注册失败！' })
+        toast.add({ 
+            title: '注册失败！',
+            icon: "i-heroicons-x-circle",
+            color: "red"
+        });
     }
 }
 

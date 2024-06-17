@@ -59,7 +59,7 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { UserLogin } from '~/services/api/auth'
 const router = useRouter();
-const snackbar = useSnackbar();
+const toast = useToast();
 const username = ref('');
 const password = ref('');
 const selected = ref(false);
@@ -104,23 +104,39 @@ watch(password, () => {
 async function login() {
     try {
         if(username.value == "" || password.value == "") {
-            snackbar.add({ type: 'warning', text: '请输入账号与密码！' })
+            toast.add({ 
+                title: '请输入账号与密码！',
+                icon: "i-heroicons-information-circle",
+                color: "orange"
+            });
             return;
         }
         const data = await UserLogin(username.value, password.value);
         if (data.code === 200) {
             localStorage.setItem("union_id", data.union_id)
             localStorage.setItem("token", data.token)
+            toast.add({ 
+                title: '登录成功！',
+                icon: "i-heroicons-check-badge"
+            });
             router.push("main/square");
             // the store of JWT and other informations.
         } else {
             username.value = ""
             password.value = ""
-            snackbar.add({ type: 'warning', text: data.msg })
+            toast.add({ 
+                title: data.msg,
+                icon: "i-heroicons-information-circle",
+                color: "orange"
+            });
         }
     } catch (error) {
         console.error('登录失败:', error);
-        snackbar.add({ type: 'error', text: '登录失败！' })
+        toast.add({ 
+            title: '登录失败！',
+            icon: "i-heroicons-x-circle",
+            color: "red"
+        });
     }
 }
 </script>

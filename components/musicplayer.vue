@@ -47,7 +47,8 @@
 import { ref, onMounted, watch } from 'vue';
 import { formatTime } from '~/services/utils/timer';
 import { musicList } from '~/public/music/musicConfig';
-const snackbar = useSnackbar();
+// const snackbar = useSnackbar();
+const toast = useToast();
 const showSongList = ref(false);
 const cover = ref('/music_cover.png');
 const isPlaying = ref(false);
@@ -108,16 +109,36 @@ const isActive = ref(false);
 const toggleColor = () => {
     isActive.value = !isActive.value;
     if(isActive.value) {
-        snackbar.add({ type: 'success', text: '成功收藏<' + song_title.value + '>' });
+        // snackbar.add({ type: 'success', text: '成功收藏<' + song_title.value + '>' });
+        toast.add({ 
+            title: '成功收藏 <' + song_title.value + '>',
+            icon: "i-heroicons-check-badge"
+        });
+        // toast.add({ 
+        //     title: 'warning',
+        //     icon: "i-heroicons-information-circle",
+        //     color: "orange"
+        // });
+        // toast.add({ 
+        //     title: 'error',
+        //     icon: "i-heroicons-x-circle",
+        //     color: "red"
+        // });
     } else {
-        snackbar.add({ type: 'success', text: '取消收藏<' + song_title.value + '>' })
+        toast.add({ 
+            title: '取消收藏 <' + song_title.value + '>',
+            icon: "i-heroicons-check-badge"
+        });
     }
 }
 
 // change music
 const last_song = () => {
     if(songNum <= 1) {
-        snackbar.add({ type: 'warning', text: '曲库还未更新，敬请期待~' })
+        toast.add({ 
+            title: '曲库还未更新，敬请期待~',
+            icon: "i-heroicons-check-badge"
+        });
     }
     if(currentIndex.value == 0) {
         currentIndex.value = musicList.length - 1;
@@ -138,7 +159,10 @@ const last_song = () => {
 }
 const next_song = () => {
     if(songNum <= 1) {
-        snackbar.add({ type: 'warning', text: '曲库还未更新，敬请期待~' })
+        toast.add({ 
+            title: '曲库还未更新，敬请期待~',
+            icon: "i-heroicons-check-badge"
+        });
     }
     currentIndex.value = (currentIndex.value + 1) % songNum;
     selectedIndex.value = currentIndex.value;
@@ -315,21 +339,20 @@ const chooseMisic = (index) => {
 
 .song-list {
     position: absolute;
-    bottom: 40px;
-    right: 0px;
+    bottom: 0px;
+    right: -264px;
     width: 230px;
     max-height: 280px;
     overflow-y: auto;
     background: linear-gradient(
         45deg, 
-        rgba(244, 234, 255, 1),
-        rgba(230, 243, 255, 1),
-        rgba(240, 255, 240, 0.9)
+        rgb(246, 242, 250),
+        rgb(237, 245, 252)
     );
     border: 2px solid #ccc;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 14px;
-    z-index: 1000;
+    z-index: 10;
     
 }
   
@@ -375,6 +398,7 @@ const chooseMisic = (index) => {
     }
     .song-list {
         width: 170px;
+        right: -210px;
     }
     .song-list li {
         padding-left: 15px;
