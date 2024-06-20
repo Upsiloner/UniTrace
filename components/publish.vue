@@ -124,14 +124,21 @@ const clearForm = () => {
   
 // 提交表单
 const submitForm = () => {
+    if(images.value.length == 0) {
+        toast.add({ 
+            title: '请至少选择一张图片',
+            icon: "i-heroicons-information-circle",
+            color: "orange"
+        });
+        return;
+    }
     const weiboData = {
         title: title.value,
         content: content.value,
         images: images.value,
         privacy: isPublic.value,
     };
-    console.log('发布微博:', weiboData);
-    // 在这里添加发布微博的逻辑
+    // TODO:在这里添加发布微博的逻辑
 };
 </script>
   
@@ -234,7 +241,7 @@ const submitForm = () => {
 
 #content {
     min-height: 100px;
-    max-height: 100px;
+    max-height: 300px;
 }
 
 .input-group input:focus,

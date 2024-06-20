@@ -25,7 +25,7 @@
 
 .nav {
     display: flex;
-    height: 100vh;
+    height: 100%;
     padding-top: 88px;
 }
 

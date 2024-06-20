@@ -50,7 +50,7 @@ import { musicList } from '~/public/music/musicConfig';
 // const snackbar = useSnackbar();
 const toast = useToast();
 const showSongList = ref(false);
-const cover = ref('/music_cover.png');
+const cover = ref('');
 const isPlaying = ref(false);
 const current_progress_bar = ref("00:00");
 const duration_bar = ref("00:00");
@@ -64,6 +64,7 @@ let songNum = musicList.length;
 const audio = ref(new Audio(currentSong.path));
 const artist_name = ref(currentSong.artist);
 const song_title = ref(currentSong.title);
+cover.value = currentSong.cover == "" ? "/music_cover.png" : currentSong.cover;
 
 // bgein or stop the music
 const togglePlay = () => {
@@ -150,6 +151,7 @@ const last_song = () => {
     audio.value.src = currentSong.value.path;
     artist_name.value = currentSong.value.artist;
     song_title.value = currentSong.value.title;
+    cover.value = currentSong.value.cover;
     audio.value.load();
     if(isPlaying.value) {
         audio.value.play();
@@ -170,6 +172,7 @@ const next_song = () => {
     audio.value.src = currentSong.value.path;
     artist_name.value = currentSong.value.artist;
     song_title.value = currentSong.value.title;
+    cover.value = currentSong.value.cover;
     audio.value.load();
     if(isPlaying.value) {
         audio.value.play();
@@ -193,6 +196,7 @@ const chooseMisic = (index) => {
         audio.value.src = currentSong.value.path;
         artist_name.value = currentSong.value.artist;
         song_title.value = currentSong.value.title;
+        cover.value = currentSong.value.cover;
         audio.value.load();
         if(isPlaying.value) {
             audio.value.play();
@@ -211,7 +215,11 @@ const chooseMisic = (index) => {
     flex-direction: column;
     align-items: center;
     padding: 28px;
-    background-color: #f9f9f9;
+    background: linear-gradient(
+        45deg, 
+        rgb(246, 242, 250),
+        rgb(231, 243, 253)
+    );
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
     width: 400px;
@@ -219,10 +227,10 @@ const chooseMisic = (index) => {
   
 .cover-image {
     overflow: hidden;
-    border-radius: 10%;
+    border-radius: 6%;
     margin-bottom: 20px;
-    width: 300px;
-    height: 300px;
+    width: 330px;
+    height: 330px;
     object-fit: cover;
     margin-bottom: 20px;
     transition: width 0.2s ease;
@@ -344,11 +352,7 @@ const chooseMisic = (index) => {
     width: 230px;
     max-height: 280px;
     overflow-y: auto;
-    background: linear-gradient(
-        45deg, 
-        rgb(246, 242, 250),
-        rgb(237, 245, 252)
-    );
+    background-color: #f9f9f9;
     border: 2px solid #ccc;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 14px;
@@ -364,7 +368,7 @@ const chooseMisic = (index) => {
   
 .song-list li {
     padding: 10px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.902);
+    border-bottom: 1px solid rgba(221, 220, 220, 0.459);
     padding-left: 24px;
     cursor: pointer;
     white-space: nowrap; /* 防止文字换行 */
@@ -390,8 +394,8 @@ const chooseMisic = (index) => {
         width: 330px;
     }
     .cover-image {
-        width: 250px;
-        height: 250px;
+        width: 260px;
+        height: 260px;
     }
     .play-button {
         margin: 0;

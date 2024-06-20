@@ -79,6 +79,7 @@ const change = (index) => {
 .tab-content {
     display: flex;
     justify-content: center;
+    margin-top: 100px;
     text-align: center;
 }
 

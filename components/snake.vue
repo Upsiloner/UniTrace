@@ -174,6 +174,7 @@ const roundRect = (ctx, x, y, width, height, radius) => {
   .snake-game {
     display: flex;
     flex-direction: column;
+    height: 600px;
     align-items: center;
   }
   canvas {
