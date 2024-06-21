@@ -18,15 +18,15 @@
                 <div id="more-text">更多</div>
                 <div v-show="showOptionsBox" class="options-box">
                     <div class="options-content">
-                        <router-link to="#">
+                        <router-link to="/protocols/about" target="_blank">
                             关于宇迹
                             <div class="more-icon"><UIcon name="i-heroicons-book-open" /></div>
                         </router-link>
-                        <router-link to="#">
+                        <router-link to="/protocols/privacy" target="_blank">
                             隐私政策
                             <div class="more-icon"><UIcon name="i-heroicons-eye-slash" /></div>
                         </router-link>
-                        <router-link to="#">
+                        <router-link to="/protocols/norms" target="_blank">
                             社区规范
                             <div class="more-icon"><UIcon name="i-heroicons-building-library" /></div>
                         </router-link>

@@ -43,6 +43,15 @@
                 </NuxtLink>
             </div>
             <button id="btn" @click="login">登录</button>
+            <div id="toprotocol">
+                登录即代表您已阅读并同意
+                <NuxtLink class="ptlink" to="/protocols/privacy" target="_blank">
+                    隐私政策
+                </NuxtLink>和
+                <NuxtLink class="ptlink" to="/protocols/norms" target="_blank">
+                    社区规范
+                </NuxtLink>
+            </div>
             <div id="toregister">
                 没有账户？
                 <NuxtLink id="link" to="signup">
@@ -164,6 +173,11 @@ async function login() {
     margin: 18px 116px;
     align-items: center; 
 }
+#toprotocol {
+    margin: 4px 42px;
+    font-size: 14px;
+    align-items: center; 
+}
 
 #loginimg {
     width: 100%; 
@@ -194,16 +208,21 @@ async function login() {
     text-shadow: 2px 2px 5px #c3b6e5; 
     text-align: center;
     margin-top: 10px;
-    margin-bottom: 54px;
+    margin-bottom: 44px;
 }
 
 #link {
     color: gray;
 }
-
-
 #link:hover {
     color: #754adb;
+}
+
+.ptlink {
+    color: rgb(127, 179, 230);
+}
+.ptlink:hover {
+    color: rgb(49, 151, 224);
 }
 
 #btn {
@@ -214,7 +233,7 @@ async function login() {
     padding: 8px 24px; 
     cursor: pointer; 
     width: 320px;
-    margin: 20px 36px;
+    margin: 6px 36px;
 }
 
 #btn:hover {

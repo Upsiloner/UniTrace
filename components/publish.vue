@@ -23,6 +23,17 @@
             placeholder="输入内容（最多800个字）"
         ></textarea>
         <span class="char-counter">{{ content.length }}/800</span>
+
+        <div class="content-choose">
+            <NuxtEmoji @on-select="select">
+                <template v-slot:button>
+                    <button class="choose">表情😁</button>
+                </template>
+            </NuxtEmoji>
+            <div>
+                <button class="choose" @click="topic">话题＃</button>
+            </div>
+        </div>
     </div>
 
     <!-- 图片选择栏 -->
@@ -73,6 +84,7 @@
   
 <script setup>
 import { ref } from 'vue';
+import { getCurrentTimeString } from '~/services/utils/date'
 
 // 定义响应式变量
 const title = ref('');
@@ -136,10 +148,25 @@ const submitForm = () => {
         title: title.value,
         content: content.value,
         images: images.value,
-        privacy: isPublic.value,
+        public: isPublic.value,
+        time: getCurrentTimeString()
     };
+    console.log(weiboData);
     // TODO:在这里添加发布微博的逻辑
+    toast.add({ 
+        title: '发布功能还未更新，敬请期待！',
+        icon: "i-heroicons-information-circle",
+        color: "orange"
+    });
 };
+
+// handle emoji and topic
+const select = (emoji) => {
+    content.value += emoji;
+}
+const topic = (emoji) => {
+    content.value += '#';
+}
 </script>
   
 <style scoped>
@@ -234,6 +261,7 @@ const submitForm = () => {
 .button-group {
     display: flex;
     justify-content: right;
+    margin-top: 24px;
 }
 .button-group button {
     margin-left: 20px;
@@ -242,6 +270,25 @@ const submitForm = () => {
 #content {
     min-height: 100px;
     max-height: 300px;
+}
+.content-choose {
+    display: flex;
+    margin-bottom: 20px;
+    margin-top: -20px;
+}
+.choose {
+    border: rgb(181, 181, 181) solid 1px;
+    width: 64px;
+    color: rgb(181, 181, 181);
+    text-align: center;
+    border-radius: 6px;
+    padding: 2px 0;
+    font-size: 14px;
+    margin-right: 8px;
+}
+.choose:hover {
+    border: purple solid 1px;
+    color: purple;
 }
 
 .input-group input:focus,
@@ -283,6 +330,18 @@ const submitForm = () => {
 }
 .privatebar p {
     margin-left: 10px;
+}
+@media (max-width: 800px) {
+    .publish {
+        width: 400px;
+    }
+    #images {
+        width: 400px;
+    }
+
+    .fake-input {
+        width: 400px;
+    }
 }
 </style>
   

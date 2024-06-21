@@ -17,5 +17,8 @@
     "nuxt-snackbar": "^1.0.4",
     "vue": "^3.4.27",
     "vue-router": "^4.3.2"
+  },
+  "devDependencies": {
+    "nuxt-emoji": "^1.0.1"
   }
 }

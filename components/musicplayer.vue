@@ -64,7 +64,7 @@ let songNum = musicList.length;
 const audio = ref(new Audio(currentSong.path));
 const artist_name = ref(currentSong.artist);
 const song_title = ref(currentSong.title);
-cover.value = currentSong.cover == "" ? "/music_cover.png" : currentSong.cover;
+cover.value = currentSong.cover == "" ? "/music/cover/music_cover.png" : currentSong.cover;
 
 // bgein or stop the music
 const togglePlay = () => {

@@ -56,6 +56,7 @@ const change = (index) => {
     left: 50%;
     transform: translateX(-50%);
     width: max-content; /* Ensures the tabs don't expand to full width */
+    margin-left: 118px;
 }
   
 /* Tab button styles */
@@ -86,5 +87,10 @@ const change = (index) => {
 .tabs button.active {
     background-color: white;
     color: purple;
+}
+@media (max-width: 800px) {
+    .tabs {
+        margin: 0;
+    }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <game_kun />
+    <NuxtImg  src="/others/kun.gif" />
 </template>
 
 <script setup>

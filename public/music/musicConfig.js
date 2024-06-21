@@ -64,7 +64,7 @@ export const musicList = [
         title: "岩石里的花",
         artist: "邓紫棋",
         cover: "/music/cover/dzq.jpg",
-        path: "/music/ysldh.ogg",
+        path: "/music/ysldh.mp3",
     },
       
   ];
