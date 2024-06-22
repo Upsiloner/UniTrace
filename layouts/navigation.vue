@@ -44,6 +44,7 @@ const isLargeScreen = computed(() => width.value > 800);
     font-size: 30px;
     margin-left: 18px;
     color: rgb(177, 177, 177);
+    z-index: 10;
 }
 .bar-ctl:hover {
     color: rgb(178, 143, 185);

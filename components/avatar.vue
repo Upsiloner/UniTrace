@@ -1,14 +1,15 @@
 <template>
-    <div class="user-box">
+    <div class="user-box" @click="gotohome">
         <div class="avatar" @mouseenter="showOptions" @mouseleave="hideOptions">
-            <NuxtImg id="avatar" src="/default_avatar.png"/>
+            <UIcon :name="status_name" class="status" :style="{ color: statusColor }"/>
+            <NuxtImg class="avatar-img" src="/default_avatar.png"/>
             <div class="choose-box" v-show="showOptionsBox">
                 <div class="choose-content">
-                    <router-link to="#">
+                    <router-link to="#" class="link">
                         切换账户
                         <div class="more-icon"><UIcon name="i-heroicons-user-plus" /></div>
                     </router-link>
-                    <router-link to="/">
+                    <router-link to="/" class="link">
                         退出登录
                         <div class="more-icon"><UIcon name="i-heroicons-arrow-right-start-on-rectangle-20-solid" /></div>
                     </router-link>
@@ -25,13 +26,24 @@
 import { ref, onMounted } from 'vue';
 import { UserGetinfo } from '~/services/api/auth'
 const username = ref("加载中...");
+// i-heroicons-face-smile-16-solid, i-heroicons-minus-circle-16-solid, i-heroicons-x-circle-16-solid
+const status_name = ref("i-heroicons-face-smile-16-solid");
+const statusColor = computed(() => {
+    if (status_name.value === 'i-heroicons-face-smile-16-solid') {
+        return '#5CDC59';
+    } else if (status_name.value === 'i-heroicons-minus-circle-16-solid') {
+        return '#F6B91F';
+    } else if (status_name.value === 'i-heroicons-x-circle-16-solid') {
+        return 'red';
+    }
+});
 
 const showOptionsBox = ref(false);
 const showOptions = () => {
-  showOptionsBox.value = true;
+    showOptionsBox.value = true;
 }
 const hideOptions = () => {
-  showOptionsBox.value = false;
+    showOptionsBox.value = false;
 }
 
 // get user information
@@ -45,6 +57,13 @@ async function GetUserInfo() {
         }
     } catch (error) {
         console.error('查询失败:', error);
+    }
+}
+
+const gotohome = (event) => {
+    if(!event.target.classList.contains('link')) {
+        // TODO: go to home page
+        console.log("test");
     }
 }
 // onMounted
@@ -67,16 +86,28 @@ onMounted(() => {
 .user-box:hover {
     background-color: #ECECEC;
 }
-#avatar {
+.avatar-img {
     width: 40px;
     border-radius: 50%;
     border: #ECECEC solid 2px;
     min-width: 46px;
 }
 
-#avatar:hover .options-box {
+.avatar-img:hover .options-box {
     display: block;
 }
+
+.avatar {
+    position: relative;
+} 
+
+.status {
+    position: absolute;
+    font-size: 16px;
+    top: -3px;
+    right: -3px;
+}
+
 .username {
     font-size: large;
     margin-left: 10px;
@@ -122,6 +153,9 @@ onMounted(() => {
     }
     .user-box:hover {
         background-color: white;
+    }
+    .choose-content {
+        margin-left: -40px;
     }
 }
 </style>

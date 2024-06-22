@@ -136,9 +136,17 @@ const clearForm = () => {
   
 // 提交表单
 const submitForm = () => {
+    if(title.value == '' || content.value == '') {
+        toast.add({ 
+            title: '请填写标题与内容！',
+            icon: "i-heroicons-information-circle",
+            color: "orange"
+        });
+        return;
+    }
     if(images.value.length == 0) {
         toast.add({ 
-            title: '请至少选择一张图片',
+            title: '请至少选择一张图片！',
             icon: "i-heroicons-information-circle",
             color: "orange"
         });
@@ -199,6 +207,11 @@ const topic = (emoji) => {
     padding: 0.5rem;
     border: 1px solid #585858;
     border-radius: 4px;
+    background: linear-gradient(
+        435deg, 
+        #F1F3FB,
+        #EBF2FC
+    );
 }
 
 .char-counter {
@@ -212,7 +225,8 @@ const topic = (emoji) => {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-    margin-top: 0.5rem;
+    margin: 1rem 0;
+    overflow: hidden;
 }
 
 #images {
@@ -256,6 +270,11 @@ const topic = (emoji) => {
     object-fit: cover;
     border: 1px solid #ccc;
     border-radius: 4px;
+    transition: transform 0.2s ease;
+}
+
+.preview-img:hover {
+    transform: scale(1.05);
 }
 
 .button-group {
@@ -268,7 +287,7 @@ const topic = (emoji) => {
 }
 
 #content {
-    min-height: 100px;
+    min-height: 120px;
     max-height: 300px;
 }
 .content-choose {
@@ -336,11 +355,11 @@ const topic = (emoji) => {
         width: 400px;
     }
     #images {
-        width: 400px;
+        width: 368px;
     }
 
     .fake-input {
-        width: 400px;
+        width: 368px;
     }
 }
 </style>

@@ -1,6 +1,5 @@
 <template>
     <div class="publish-content">
-        <div class="background-image"></div>
         <publish />
     </div>
 
@@ -18,26 +17,21 @@ useHead({
 
 <style>
 .publish-content {
-    width: 1100px;
+    width: 1400px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 14px;
-    padding: 0;
+    padding: 20px 0;
     min-height: 700px;
     height: 100%;
+    min-height: 80vh;
     position: relative;
     display: flex;
     align-items: center;
+    background: linear-gradient(
+        45deg, 
+        rgb(246, 242, 250),
+        rgb(231, 243, 253)
+    );
 }
-.background-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('/public/publish_bg.png');
-    background-size: cover;
-    opacity: 22%;
-    border-radius: 14px;
-    pointer-events: none;
-}
+
 </style>

@@ -28,6 +28,6 @@ import { ref } from 'vue';
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  padding: 0 20px;
+  padding: 10px 20px 40px 20px;
 }
 </style>
